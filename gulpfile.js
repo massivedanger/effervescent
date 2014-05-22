@@ -41,7 +41,6 @@ gulp.task('test', function() {
    gulp.src(['test/test.coffee', 'test/**/*.coffee'])
     .pipe(mocha({
       compilers: 'coffee:coffee-script/register',
-      globals: ['chai', 'expect'],
-      reporter: 'list'
+      globals: ['chai', 'expect', 'sinon']
     })).on('error', function(){});
 });
