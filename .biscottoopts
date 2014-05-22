@@ -1,0 +1,10 @@
+--name       "Wintermute"
+--readme     README.md
+--title      "Wintermute"
+--private
+--quiet
+--output-dir ./doc
+./src
+-
+LICENSE.md
+CHANGELOG.md

@@ -1,0 +1,38 @@
+{
+  "name": "wintermute",
+  "version": "0.0.0",
+  "description": "A game engine",
+  "main": "build/wintermute.js",
+  "scripts": {
+    "test": "./node_modules/.bin/gulp test"
+  },
+  "keywords": [
+    "game",
+    "games",
+    "ecs",
+    "engine",
+    "html5"
+  ],
+  "author": "Evan Walsh",
+  "license": "MIT",
+  "devDependencies": {
+    "biscotto": "^2.1.1",
+    "browserify": "^4.1.5",
+    "chai": "^1.9.1",
+    "coffee-script": "^1.7.1",
+    "gulp": "^3.6.2",
+    "gulp-coffee": "^1.4.3",
+    "gulp-mocha": "^0.4.1",
+    "gulp-util": "^2.2.14",
+    "gulp-watch": "^0.6.4",
+    "mocha": "^1.19.0",
+    "sinon": "^1.10.0",
+    "sinon-chai": "^2.5.0",
+    "vinyl-source-stream": "^0.1.1"
+  },
+  "dependencies": {
+    "amdefine": "^0.1.0",
+    "pixi.js": "^1.5.2",
+    "zepto-browserify": "^1.1.3-0"
+  }
+}
