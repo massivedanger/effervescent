@@ -51,4 +51,4 @@ gulp.task('clean', function() {
     .pipe(clean());
 });
 
-gulp.task('build', ['clean', 'test', 'coffee', 'browserify', 'doc']);
+gulp.task('build', ['test', 'coffee', 'browserify', 'doc']);
