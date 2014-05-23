@@ -5,6 +5,7 @@ var gutil = require('gulp-util');
 var coffee = require('gulp-coffee');
 var watch = require('gulp-watch');
 var mocha = require('gulp-mocha');
+var clean = require('gulp-clean');
 
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
@@ -42,5 +43,12 @@ gulp.task('test', function() {
     .pipe(mocha({
       compilers: 'coffee:coffee-script/register',
       globals: ['chai', 'expect', 'sinon']
-    })).on('error', function(){});
+    })).on('error', gutil.log);
 });
+
+gulp.task('clean', function() {
+  gulp.src(['build', 'dist'], { read: false })
+    .pipe(clean());
+});
+
+gulp.task('build', ['clean', 'test', 'coffee', 'browserify', 'doc']);
