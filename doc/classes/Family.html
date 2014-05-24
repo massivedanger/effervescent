@@ -113,6 +113,12 @@
           <td>src&#47;wintermute&#47;family.coffee</td>
         </tr>
       </table>
+      <h2>Overview</h2>
+      <div class='docstring'>
+  <p>Groups a <a href='../classes/Game.html'>Game</a>&#39;s <a href='../classes/Entity.html'>Entity</a> list into a set matching a list of <a href='../classes/Component.html'>Component</a>s</p>
+</div>
+<div class='tags'>
+</div>
       <h2>Instance Method Summary</h2>
       <ul class='summary'>
   <li>
@@ -128,31 +134,31 @@
   <li>
     <span class='signature'>
       <a href='#addEntityIfMatches-instance'>
-        ::<strong>addEntityIfMatches</strong>(entity)
+        Number ::<strong>addEntityIfMatches</strong>(entity)
       </a>
     </span>
     <span class='desc'>
-      
+      Add an <a href='../classes/Entity.html'>Entity</a> to this Family if it matches the required Components
     </span>
   </li>
   <li>
     <span class='signature'>
       <a href='#constructor-instance'>
-        ::<strong>constructor</strong>(componentNames...)
+        Family ::<strong>constructor</strong>(componentNames...)
       </a>
     </span>
     <span class='desc'>
-      
+      Create a Family
     </span>
   </li>
   <li>
     <span class='signature'>
       <a href='#getEntities-instance'>
-        ::<strong>getEntities</strong>()
+        Array ::<strong>getEntities</strong>()
       </a>
     </span>
     <span class='desc'>
-      
+      Get all entities belonging to this Family
     </span>
   </li>
   <li>
@@ -162,7 +168,7 @@
       </a>
     </span>
     <span class='desc'>
-      
+      Callback used to add an <a href='../classes/Entity.html'>Entity</a> to this Family
     </span>
   </li>
   <li>
@@ -172,17 +178,17 @@
       </a>
     </span>
     <span class='desc'>
-      
+      Callback used to remove an <a href='../classes/Entity.html'>Entity</a> from this Family
     </span>
   </li>
   <li>
     <span class='signature'>
       <a href='#removeEntity-instance'>
-        ::<strong>removeEntity</strong>(entity)
+        Number ::<strong>removeEntity</strong>(entity)
       </a>
     </span>
     <span class='desc'>
-      
+      Remove an <a href='../classes/Entity.html'>Entity</a> from this Family
     </span>
   </li>
 </ul>
@@ -190,11 +196,31 @@
       <div class='methods'>
   <div class='method_details'>
     <p class='signature' id='constructor-instance'>
-      ::<strong>constructor</strong>(componentNames...)
+      Family ::<strong>constructor</strong>(componentNames...)
       <a class='gh-link' href='https:&#47;&#47;github.com&#47;massivedanger&#47;wintermute
-&#47;blob&#47;master/src&#47;wintermute&#47;family.coffee#L4'>Source</a>
+&#47;blob&#47;master/src&#47;wintermute&#47;family.coffee#L12'>Source</a>
     </p>
-    <div class='tags'>
+    <div class='docstring'>
+  <p>Create a Family</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>componentNames</span>
+      &mdash;
+      <span class='desc'>List of Component names</span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt><a href='../classes/Family.html'>Family</a></tt>)
+      &mdash;
+      <span class='desc'>Returns <a href='../classes/Family.html'>Family</a> the new Family</span>
+    </li>
+  </ul>
 </div>
   </div>
 </div>
@@ -204,61 +230,151 @@
     <p class='signature' id='_entityMatches-instance'>
       ::<strong>_entityMatches</strong>(entity)
       <a class='gh-link' href='https:&#47;&#47;github.com&#47;massivedanger&#47;wintermute
-&#47;blob&#47;master/src&#47;wintermute&#47;family.coffee#L27'>Source</a>
+&#47;blob&#47;master/src&#47;wintermute&#47;family.coffee#L59'>Source</a>
     </p>
     <div class='tags'>
 </div>
   </div>
   <div class='method_details'>
     <p class='signature' id='addEntityIfMatches-instance'>
-      ::<strong>addEntityIfMatches</strong>(entity)
+      Number ::<strong>addEntityIfMatches</strong>(entity)
       <a class='gh-link' href='https:&#47;&#47;github.com&#47;massivedanger&#47;wintermute
-&#47;blob&#47;master/src&#47;wintermute&#47;family.coffee#L11'>Source</a>
+&#47;blob&#47;master/src&#47;wintermute&#47;family.coffee#L27'>Source</a>
     </p>
-    <div class='tags'>
+    <div class='docstring'>
+  <p>Add an <a href='../classes/Entity.html'>Entity</a> to this Family if it matches the required Components</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='type'>(Entity)</span>
+      <span class='name'>entity</span>
+      &mdash;
+      <span class='desc'><a href='../classes/Entity.html'>Entity</a> The entity to attempt to add</span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>Number</tt>)
+      &mdash;
+      <span class='desc'>Returns <a href='https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Number'>Number</a> if successful, the number of entities belonging to the Family</span>
+    </li>
+  </ul>
 </div>
   </div>
   <div class='method_details'>
     <p class='signature' id='getEntities-instance'>
-      ::<strong>getEntities</strong>()
+      Array ::<strong>getEntities</strong>()
       <a class='gh-link' href='https:&#47;&#47;github.com&#47;massivedanger&#47;wintermute
-&#47;blob&#47;master/src&#47;wintermute&#47;family.coffee#L8'>Source</a>
+&#47;blob&#47;master/src&#47;wintermute&#47;family.coffee#L19'>Source</a>
     </p>
-    <div class='tags'>
+    <div class='docstring'>
+  <p>Get all entities belonging to this Family</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>Array</tt>)
+      &mdash;
+      <span class='desc'>Returns <a href='https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Array'>Array</a> All the entities belong to this Family</span>
+    </li>
+  </ul>
 </div>
   </div>
   <div class='method_details'>
     <p class='signature' id='onComponentAdded-instance'>
       ::<strong>onComponentAdded</strong>(entity, componentName)
       <a class='gh-link' href='https:&#47;&#47;github.com&#47;massivedanger&#47;wintermute
-&#47;blob&#47;master/src&#47;wintermute&#47;family.coffee#L18'>Source</a>
+&#47;blob&#47;master/src&#47;wintermute&#47;family.coffee#L44'>Source</a>
     </p>
-    <div class='tags'>
+    <div class='docstring'>
+  <p>Callback used to add an <a href='../classes/Entity.html'>Entity</a> to this Family</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='type'>(Entity)</span>
+      <span class='name'>entity</span>
+      &mdash;
+      <span class='desc'><a href='../classes/Entity.html'>Entity</a> The entity</span>
+    </li>
+    <li>
+      <span class='type'>(Component)</span>
+      <span class='name'>componentName</span>
+      &mdash;
+      <span class='desc'>The name of the <a href='../classes/Component.html'>Component</a></span>
+    </li>
+  </ul>
 </div>
   </div>
   <div class='method_details'>
     <p class='signature' id='onComponentRemoved-instance'>
       ::<strong>onComponentRemoved</strong>(entity, componentName)
       <a class='gh-link' href='https:&#47;&#47;github.com&#47;massivedanger&#47;wintermute
-&#47;blob&#47;master/src&#47;wintermute&#47;family.coffee#L21'>Source</a>
+&#47;blob&#47;master/src&#47;wintermute&#47;family.coffee#L51'>Source</a>
     </p>
-    <div class='tags'>
+    <div class='docstring'>
+  <p>Callback used to remove an <a href='../classes/Entity.html'>Entity</a> from this Family</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='type'>(Entity)</span>
+      <span class='name'>entity</span>
+      &mdash;
+      <span class='desc'><a href='../classes/Entity.html'>Entity</a> The entity</span>
+    </li>
+    <li>
+      <span class='type'>(Component)</span>
+      <span class='name'>componentName</span>
+      &mdash;
+      <span class='desc'>The name of the <a href='../classes/Component.html'>Component</a></span>
+    </li>
+  </ul>
 </div>
   </div>
   <div class='method_details'>
     <p class='signature' id='removeEntity-instance'>
-      ::<strong>removeEntity</strong>(entity)
+      Number ::<strong>removeEntity</strong>(entity)
       <a class='gh-link' href='https:&#47;&#47;github.com&#47;massivedanger&#47;wintermute
-&#47;blob&#47;master/src&#47;wintermute&#47;family.coffee#L15'>Source</a>
+&#47;blob&#47;master/src&#47;wintermute&#47;family.coffee#L36'>Source</a>
     </p>
-    <div class='tags'>
+    <div class='docstring'>
+  <p>Remove an <a href='../classes/Entity.html'>Entity</a> from this Family</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='type'>(Entity)</span>
+      <span class='name'>entity</span>
+      &mdash;
+      <span class='desc'><a href='../classes/Entity.html'>Entity</a> The entity to attempt to remove</span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>Number</tt>)
+      &mdash;
+      <span class='desc'>Returns <a href='https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Number'>Number</a> The number of entities belonging to this Family</span>
+    </li>
+  </ul>
 </div>
   </div>
 </div>
     </div>
     <div id='footer'>
   Generated on
-  Sat May 24 2014 17:17:26 GMT-0400 (EDT)
+  Sat May 24 2014 17:44:52 GMT-0400 (EDT)
   by
   <a href='https://github.com/gjtorikian/biscotto' title='TomDoc-CoffeeScript API documentation generator'>Biscotto</a>
   v2.1.1

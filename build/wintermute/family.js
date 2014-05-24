@@ -5,6 +5,8 @@ var Family, _,
 _ = require("lodash");
 
 Family = (function() {
+
+  /* Public */
   function Family() {
     var componentNames;
     componentNames = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
@@ -23,7 +25,8 @@ Family = (function() {
   };
 
   Family.prototype.removeEntity = function(entity) {
-    return this._entities = _.without(this._entities, entity);
+    this._entities = _.without(this._entities, entity);
+    return this._entities.length;
   };
 
   Family.prototype.onComponentAdded = function(entity, componentName) {
@@ -31,14 +34,15 @@ Family = (function() {
   };
 
   Family.prototype.onComponentRemoved = function(entity, componentName) {
-    var index;
     if (__indexOf.call(this._entities, entity) >= 0) {
       if (__indexOf.call(this._componentNames, componentName) >= 0) {
-        index = this._entities.indexOf(entity);
-        return this._entities.splice(index, 1);
+        return this._entities = _.without(this._entities, entity);
       }
     }
   };
+
+
+  /* Private */
 
   Family.prototype._entityMatches = function(entity) {
     var name, _i, _len, _ref;
