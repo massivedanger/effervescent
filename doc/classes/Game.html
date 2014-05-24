@@ -113,6 +113,12 @@
           <td>src&#47;wintermute&#47;game.coffee</td>
         </tr>
       </table>
+      <h2>Overview</h2>
+      <div class='docstring'>
+  <p>The base class for the game, of course. Generally, you&#39;ll only need one.</p>
+</div>
+<div class='tags'>
+</div>
       <h2>Instance Method Summary</h2>
       <ul class='summary'>
   <li>
@@ -138,21 +144,21 @@
   <li>
     <span class='signature'>
       <a href='#addEntity-instance'>
-        ::<strong>addEntity</strong>(entity)
+        Number ::<strong>addEntity</strong>(entity)
       </a>
     </span>
     <span class='desc'>
-      
+      Add an entity to the game for manipulation
     </span>
   </li>
   <li>
     <span class='signature'>
       <a href='#addSystem-instance'>
-        ::<strong>addSystem</strong>(system)
+        Number ::<strong>addSystem</strong>(system)
       </a>
     </span>
     <span class='desc'>
-      
+      Add a system that&#39;ll be updated each timestep
     </span>
   </li>
   <li>
@@ -162,37 +168,37 @@
       </a>
     </span>
     <span class='desc'>
-      
+      Create a new Game
     </span>
   </li>
   <li>
     <span class='signature'>
       <a href='#getEntities-instance'>
-        ::<strong>getEntities</strong>(componentNames...)
+        Array ::<strong>getEntities</strong>(componentNames...)
       </a>
     </span>
     <span class='desc'>
-      
+      Get all entities matching a list of component names
     </span>
   </li>
   <li>
     <span class='signature'>
-      <a href='#remoteEntity-instance'>
-        ::<strong>remoteEntity</strong>(entity)
+      <a href='#removeEntity-instance'>
+        Number ::<strong>removeEntity</strong>(entity)
       </a>
     </span>
     <span class='desc'>
-      
+      Remove an entity from the game
     </span>
   </li>
   <li>
     <span class='signature'>
       <a href='#removeSystem-instance'>
-        ::<strong>removeSystem</strong>(system)
+        Number ::<strong>removeSystem</strong>(system)
       </a>
     </span>
     <span class='desc'>
-      
+      Remove a system that&#39;ll be updated each timestep
     </span>
   </li>
   <li>
@@ -202,7 +208,7 @@
       </a>
     </span>
     <span class='desc'>
-      
+      Update all the systems added to the game
     </span>
   </li>
 </ul>
@@ -212,9 +218,28 @@
     <p class='signature' id='constructor-instance'>
       ::<strong>constructor</strong>(options = {})
       <a class='gh-link' href='https:&#47;&#47;github.com&#47;massivedanger&#47;wintermute
-&#47;blob&#47;master/src&#47;wintermute&#47;game.coffee#L4'>Source</a>
+&#47;blob&#47;master/src&#47;wintermute&#47;game.coffee#L13'>Source</a>
     </p>
-    <div class='tags'>
+    <div class='docstring'>
+  <p>Create a new Game</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>options</span>
+      &mdash;
+      <span class='desc'>The options</span>
+    </li>
+    <ul class='options'>
+      <li>
+        <span class='type'>(String)</span>
+        <span class='name'>container</span>
+        &mdash;
+        <span class='desc'><a href='https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String'>String</a> HTML selector for the game&#39;s container element</span>
+      </li>
+    </ul>
+  </ul>
 </div>
   </div>
 </div>
@@ -224,7 +249,7 @@
     <p class='signature' id='_onComponentAdded-instance'>
       ::<strong>_onComponentAdded</strong>(entity, componentName)
       <a class='gh-link' href='https:&#47;&#47;github.com&#47;massivedanger&#47;wintermute
-&#47;blob&#47;master/src&#47;wintermute&#47;game.coffee#L53'>Source</a>
+&#47;blob&#47;master/src&#47;wintermute&#47;game.coffee#L91'>Source</a>
     </p>
     <div class='tags'>
 </div>
@@ -233,70 +258,187 @@
     <p class='signature' id='_onComponentRemoved-instance'>
       ::<strong>_onComponentRemoved</strong>(entity, componentName)
       <a class='gh-link' href='https:&#47;&#47;github.com&#47;massivedanger&#47;wintermute
-&#47;blob&#47;master/src&#47;wintermute&#47;game.coffee#L57'>Source</a>
+&#47;blob&#47;master/src&#47;wintermute&#47;game.coffee#L95'>Source</a>
     </p>
     <div class='tags'>
 </div>
   </div>
   <div class='method_details'>
     <p class='signature' id='addEntity-instance'>
-      ::<strong>addEntity</strong>(entity)
+      Number ::<strong>addEntity</strong>(entity)
       <a class='gh-link' href='https:&#47;&#47;github.com&#47;massivedanger&#47;wintermute
-&#47;blob&#47;master/src&#47;wintermute&#47;game.coffee#L10'>Source</a>
+&#47;blob&#47;master/src&#47;wintermute&#47;game.coffee#L24'>Source</a>
     </p>
-    <div class='tags'>
+    <div class='docstring'>
+  <p>Add an entity to the game for manipulation</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='type'>(Entity)</span>
+      <span class='name'>entity</span>
+      &mdash;
+      <span class='desc'><a href='../classes/Entity.html'>Entity</a> Entity to add</span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>Number</tt>)
+      &mdash;
+      <span class='desc'>Returns <a href='https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Number'>Number</a> Total entities in the game</span>
+    </li>
+  </ul>
 </div>
   </div>
   <div class='method_details'>
     <p class='signature' id='addSystem-instance'>
-      ::<strong>addSystem</strong>(system)
+      Number ::<strong>addSystem</strong>(system)
       <a class='gh-link' href='https:&#47;&#47;github.com&#47;massivedanger&#47;wintermute
-&#47;blob&#47;master/src&#47;wintermute&#47;game.coffee#L40'>Source</a>
+&#47;blob&#47;master/src&#47;wintermute&#47;game.coffee#L68'>Source</a>
     </p>
-    <div class='tags'>
+    <div class='docstring'>
+  <p>Add a system that&#39;ll be updated each timestep</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='type'>(System)</span>
+      <span class='name'>system</span>
+      &mdash;
+      <span class='desc'><a href='../classes/System.html'>System</a> The system to add</span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>Number</tt>)
+      &mdash;
+      <span class='desc'>Returns <a href='https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Number'>Number</a> Total systems in the game</span>
+    </li>
+  </ul>
 </div>
   </div>
   <div class='method_details'>
     <p class='signature' id='getEntities-instance'>
-      ::<strong>getEntities</strong>(componentNames...)
+      Array ::<strong>getEntities</strong>(componentNames...)
       <a class='gh-link' href='https:&#47;&#47;github.com&#47;massivedanger&#47;wintermute
-&#47;blob&#47;master/src&#47;wintermute&#47;game.coffee#L30'>Source</a>
+&#47;blob&#47;master/src&#47;wintermute&#47;game.coffee#L53'>Source</a>
     </p>
-    <div class='tags'>
+    <div class='docstring'>
+  <p>Get all entities matching a list of component names</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='type'>(Array)</span>
+      <span class='name'>componentNames</span>
+      &mdash;
+      <span class='desc'><a href='https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Array'>Array</a> List of component names to query by</span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>Array</tt>)
+      &mdash;
+      <span class='desc'>Returns <a href='https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Array'>Array</a> List of entities matching all those component names</span>
+    </li>
+  </ul>
 </div>
   </div>
   <div class='method_details'>
-    <p class='signature' id='remoteEntity-instance'>
-      ::<strong>remoteEntity</strong>(entity)
+    <p class='signature' id='removeEntity-instance'>
+      Number ::<strong>removeEntity</strong>(entity)
       <a class='gh-link' href='https:&#47;&#47;github.com&#47;massivedanger&#47;wintermute
-&#47;blob&#47;master/src&#47;wintermute&#47;game.coffee#L22'>Source</a>
+&#47;blob&#47;master/src&#47;wintermute&#47;game.coffee#L41'>Source</a>
     </p>
-    <div class='tags'>
+    <div class='docstring'>
+  <p>Remove an entity from the game</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='type'>(Entity)</span>
+      <span class='name'>entity</span>
+      &mdash;
+      <span class='desc'><a href='../classes/Entity.html'>Entity</a> Entity to remove</span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>Number</tt>)
+      &mdash;
+      <span class='desc'>Returns <a href='https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Number'>Number</a> Total entities in the game</span>
+    </li>
+  </ul>
 </div>
   </div>
   <div class='method_details'>
     <p class='signature' id='removeSystem-instance'>
-      ::<strong>removeSystem</strong>(system)
+      Number ::<strong>removeSystem</strong>(system)
       <a class='gh-link' href='https:&#47;&#47;github.com&#47;massivedanger&#47;wintermute
-&#47;blob&#47;master/src&#47;wintermute&#47;game.coffee#L44'>Source</a>
+&#47;blob&#47;master/src&#47;wintermute&#47;game.coffee#L77'>Source</a>
     </p>
-    <div class='tags'>
+    <div class='docstring'>
+  <p>Remove a system that&#39;ll be updated each timestep</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='type'>(System)</span>
+      <span class='name'>system</span>
+      &mdash;
+      <span class='desc'><a href='../classes/System.html'>System</a> The system to remove</span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>Number</tt>)
+      &mdash;
+      <span class='desc'>Returns <a href='https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Number'>Number</a> Total systems in the game</span>
+    </li>
+  </ul>
 </div>
   </div>
   <div class='method_details'>
     <p class='signature' id='update-instance'>
       ::<strong>update</strong>(delta)
       <a class='gh-link' href='https:&#47;&#47;github.com&#47;massivedanger&#47;wintermute
-&#47;blob&#47;master/src&#47;wintermute&#47;game.coffee#L49'>Source</a>
+&#47;blob&#47;master/src&#47;wintermute&#47;game.coffee#L85'>Source</a>
     </p>
-    <div class='tags'>
+    <div class='docstring'>
+  <p>Update all the systems added to the game</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='type'>(Number)</span>
+      <span class='name'>delta</span>
+      &mdash;
+      <span class='desc'><a href='https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Number'>Number</a> Amount of time that has passed between frames</span>
+    </li>
+  </ul>
 </div>
   </div>
 </div>
     </div>
     <div id='footer'>
   Generated on
-  Fri May 23 2014 11:13:10 GMT-0400 (EDT)
+  Sat May 24 2014 17:17:26 GMT-0400 (EDT)
   by
   <a href='https://github.com/gjtorikian/biscotto' title='TomDoc-CoffeeScript API documentation generator'>Biscotto</a>
   v2.1.1

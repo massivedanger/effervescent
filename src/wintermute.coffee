@@ -1,7 +1,8 @@
 Wintermute =
+  server: true
+
   # Core
   Game: require "./wintermute/game"
-  Sprite: require "./wintermute/sprite"
 
   # ECS
   Entity: require "./wintermute/entity"
@@ -12,8 +13,15 @@ Wintermute =
   # Math
   Vector2: require "./wintermute/vector2"
 
+if typeof window != "undefined"
+  Wintermute.server = false
+
   # Browser libs
-  PIXI: require "pixi.js"
-  Zepto: require "zepto-browserify"
+  Wintermute.PIXI = require "pixi.js"
+  Wintermute.Zepto = require "zepto-browserify"
+
+  # Graphics
+  Sprite: require "./wintermute/sprite"
+
 
 module.exports = Wintermute

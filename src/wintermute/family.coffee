@@ -1,3 +1,5 @@
+_ = require "lodash"
+
 class Family
   constructor: (componentNames...) ->
     @_componentNames = componentNames
@@ -11,9 +13,7 @@ class Family
       @_entities.push entity
 
   removeEntity: (entity) ->
-    index = @_entities.indexOf entity
-    if index >= 0
-      @_entities.splice index, 1
+    @_entities = _.without @_entities, entity
 
   onComponentAdded: (entity, componentName) ->
     @addEntityIfMatches entity

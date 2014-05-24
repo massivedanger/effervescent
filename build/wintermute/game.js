@@ -1,9 +1,13 @@
-var Family, Game,
+var Family, Game, _,
   __slice = [].slice;
 
 Family = require("./family");
 
+_ = require("lodash");
+
 Game = (function() {
+
+  /* Public */
   function Game(options) {
     if (options == null) {
       options = {};
@@ -30,17 +34,15 @@ Game = (function() {
     return this._entities.push(entity);
   };
 
-  Game.prototype.remoteEntity = function(entity) {
-    var family, id, index, _i, _len, _ref;
+  Game.prototype.removeEntity = function(entity) {
+    var family, id, _ref;
     _ref = this._families;
-    for (family = _i = 0, _len = _ref.length; _i < _len; family = ++_i) {
-      id = _ref[family];
+    for (id in _ref) {
+      family = _ref[id];
       family.removeEntity(entity);
     }
-    index = this._entities.indexOf(entity);
-    if (index >= 0) {
-      return this._entities.splice(index, 1);
-    }
+    this._entities = _.without(this._entities, entity);
+    return this._entities.length;
   };
 
   Game.prototype.getEntities = function() {
@@ -49,11 +51,11 @@ Game = (function() {
     familyId = "$" + (componentNames.join(","));
     if (!this._families[familyId]) {
       this._families[familyId] = new Family(componentNames);
-    }
-    _ref = this._entities;
-    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-      entity = _ref[_i];
-      this._families[familyId].addEntityIfMatches(entity);
+      _ref = this._entities;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        entity = _ref[_i];
+        this._families[familyId].addEntityIfMatches(entity);
+      }
     }
     return this._families[familyId].getEntities();
   };
@@ -64,11 +66,9 @@ Game = (function() {
   };
 
   Game.prototype.removeSystem = function(system) {
-    var index;
-    index = this._systems.indexOf(system);
-    if (index >= 0) {
-      return this._systems.splice(index, 1);
-    }
+    system.game = null;
+    this._systems = _.without(this._systems, system);
+    return this._systems.length;
   };
 
   Game.prototype.update = function(delta) {
@@ -81,6 +81,9 @@ Game = (function() {
     }
     return _results;
   };
+
+
+  /* Private */
 
   Game.prototype._onComponentAdded = function(entity, componentName) {
     var family, id, _i, _len, _results;
