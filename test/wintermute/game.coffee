@@ -25,22 +25,37 @@ describe "Game", ->
     entity.addComponent component
     game.addEntity entity
 
-    expect(game.getEntities("test")).to.include(entity)
+    expect(game.getEntities(["test"])).to.include(entity)
 
   it "can remove an entity", ->
     entity.addComponent component
 
     game.addEntity entity
-    expect(game.getEntities("test")).to.include(entity)
+    expect(game.getEntities(["test"])).to.include(entity)
 
     game.removeEntity entity
-    expect(game.getEntities("test")).to.not.include(entity)
+    expect(game.getEntities(["test"])).to.not.include(entity)
+
+  it "can notify families when a component is added", ->
+    game.addEntity entity
+    expect(game.getEntities(["test"])).to.not.include(entity)
+    entity.addComponent component
+
+    expect(game.getEntities(["test"])).to.include(entity)
+
+  it "can notify families when a component is removed", ->
+    game.addEntity entity
+    entity.addComponent component
+    expect(game.getEntities(["test"])).to.include(entity)
+
+    game.removeEntity entity
+    expect(game.getEntities(["test"])).to.not.include(entity)
 
   it "can get entities", ->
     entity.addComponent component
     game.addEntity entity
 
-    expect(game.getEntities("test")).to.include(entity)
+    expect(game.getEntities(["test"])).to.include(entity)
 
   it "can add a system", ->
     expect(system.game).to.be.undefined

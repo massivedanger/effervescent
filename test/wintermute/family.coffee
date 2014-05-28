@@ -9,7 +9,7 @@ describe "Family", ->
 
   beforeEach ->
     entity = new Entity()
-    family = new Family("test")
+    family = new Family(["test"])
     component = new Component()
     component.name = "test"
     entity.addComponent component

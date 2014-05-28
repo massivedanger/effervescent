@@ -6,10 +6,10 @@ class Family
 
   # Create a Family
   #
-  # componentNames - List of Component names
+  # componentNames - {Array} Component names
   #
   # Returns {Family} the new Family
-  constructor: (componentNames...) ->
+  constructor: (componentNames) ->
     @_componentNames = componentNames
     @_entities = []
 
@@ -41,14 +41,15 @@ class Family
   #
   # entity - {Entity} The entity
   # componentName - The name of the {Component}
-  onComponentAdded: (entity, componentName) ->
-    @addEntityIfMatches entity
+  onComponentAdded: (entity, componentName) =>
+    if componentName in @_componentNames
+      @addEntityIfMatches entity
 
   # Callback used to remove an {Entity} from this Family
   #
   # entity - {Entity} The entity
   # componentName - The name of the {Component}
-  onComponentRemoved: (entity, componentName) ->
+  onComponentRemoved: (entity, componentName) =>
     if entity in @_entities
       if componentName in @_componentNames
         @_entities = _.without @_entities, entity

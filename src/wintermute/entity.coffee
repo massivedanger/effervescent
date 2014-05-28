@@ -33,13 +33,13 @@ class Entity
   # component - {Component} The Component object
   addComponent: (component) ->
     @_components["$#{component.name}"] = component
-    @onComponentAdded.emit component.name
+    @onComponentAdded.emit this, component.name
 
   # Remove a {Component} from an Entity
   #
   # componentName - {String} Name of component to remove
   removeComponent: (componentName) ->
     @_components["$#{componentName}"] = undefined
-    @onComponentRemoved.emit componentName
+    @onComponentRemoved.emit this, componentName
 
 module.exports = Entity

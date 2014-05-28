@@ -14,6 +14,7 @@ describe "Entity", ->
     entity.addComponent component
 
     expect(entity.onComponentAdded.emit).to.have.been.calledWith(
+      entity,
       component.name
     )
 
@@ -27,6 +28,7 @@ describe "Entity", ->
     entity.removeComponent "testing"
 
     expect(entity.onComponentRemoved.emit).to.have.been.calledWith(
+      entity,
       component.name
     )
 

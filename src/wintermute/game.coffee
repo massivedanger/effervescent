@@ -25,11 +25,11 @@ class Game
     for family in @_families
       family.addEntityIfMatches entity
 
-    entity.onComponentAdded.add (entity, component) ->
-      @_onComponentAdded entity, component
+    entity.onComponentAdded.add (entity, component) =>
+      @onComponentAdded entity, component
 
-    entity.onComponentRemoved.add (entity, component) ->
-      @_onComponentRemoved entity, component
+    entity.onComponentRemoved.add (entity, component) =>
+      @onComponentRemoved entity, component
 
     @_entities.push entity
 
@@ -50,7 +50,7 @@ class Game
   # componentNames - {Array} List of component names to query by
   #
   # Returns {Array} List of entities matching all those component names
-  getEntities: (componentNames...) ->
+  getEntities: (componentNames) ->
     familyId = "$#{componentNames.join(",")}"
     unless @_families[familyId]
       @_families[familyId] = new Family componentNames
@@ -88,12 +88,12 @@ class Game
 
   ### Private ###
 
-  _onComponentAdded: (entity, componentName) ->
-    for id, family in families
+  onComponentAdded: (entity, componentName) ->
+    for id, family of @_families
       family.onComponentAdded entity, componentName
 
-  _onComponentRemoved: (entity, componentName) ->
-    for id, family in families
+  onComponentRemoved: (entity, componentName) ->
+    for id, family of @_families
       family.onComponentRemoved entity, componentName
 
 module.exports = Game
