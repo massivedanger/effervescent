@@ -70,19 +70,19 @@ describe "Vector2", ->
   it "has a magnitude", ->
     vector.set 20, 30
 
-    expect(vector.magnitude()).to.be.equal(36.05551275463989)
+    expect(vector.magnitude()).to.be.within(36.0, 36.1)
 
   it "has an angle", ->
     vector.set 20, 20
-    expect(vector.angle()).to.be.equal(0.7853981633974483)
+    expect(vector.angle()).to.be.within(0.78, 0.79)
 
   it "has an angle in degrees", ->
     vector.set 20, 20
-    expect(vector.angle(degrees: true)).to.be.equal(44.99999998972517)
+    expect(vector.angle(degrees: true)).to.be.within(44.9, 50.0)
 
   it "get an angle to another vector in radians", ->
     other = new Vector2(99, 300)
-    expect(vector.angleTo(other)).to.equal(-1.889543887215541)
+    expect(vector.angleTo(other)).to.be.within(-1.89, -1.88)
 
   it "get an angle to another vector in degrees", ->
     other = new Vector2(99, 300)
@@ -134,12 +134,12 @@ describe "Vector2", ->
     vector.set 20, 30
     vector.rotate 1
 
-    expect(vector.x).to.be.equal(19.48087668059005)
-    expect(vector.y).to.be.equal(30.339667825400497)
+    expect(vector.x).to.be.within(19.4, 19.5)
+    expect(vector.y).to.be.within(30.3, 30.4)
 
   it "can be rotated by degrees", ->
     vector.set 20, 20
     vector.rotate 45, degrees: true
 
-    expect(vector.x).to.be.equal(19.999999996413404)
-    expect(vector.y).to.be.equal(20.000000003586596)
+    expect(vector.x).to.be.within(19.9, 20.0)
+    expect(vector.y).to.be.within(20.0, 20.1)
