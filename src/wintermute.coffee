@@ -23,5 +23,7 @@ if typeof window != "undefined"
   # Graphics
   Sprite: require "./wintermute/sprite"
 
+  # Input
+  Input: require "./wintermute/input"
 
 module.exports = Wintermute

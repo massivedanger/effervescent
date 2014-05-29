@@ -15,7 +15,8 @@ if (typeof window !== "undefined") {
   Wintermute.PIXI = require("pixi.js");
   Wintermute.Zepto = require("zepto-browserify");
   ({
-    Sprite: require("./wintermute/sprite")
+    Sprite: require("./wintermute/sprite"),
+    Input: require("./wintermute/input")
   });
 }
 

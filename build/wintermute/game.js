@@ -1,5 +1,4 @@
-var Family, Game, _,
-  __slice = [].slice;
+var Family, Game, _;
 
 Family = require("./family");
 
@@ -25,12 +24,16 @@ Game = (function() {
       family = _ref[_i];
       family.addEntityIfMatches(entity);
     }
-    entity.onComponentAdded.add(function(entity, component) {
-      return this._onComponentAdded(entity, component);
-    });
-    entity.onComponentRemoved.add(function(entity, component) {
-      return this._onComponentRemoved(entity, component);
-    });
+    entity.onComponentAdded.add((function(_this) {
+      return function(entity, component) {
+        return _this.onComponentAdded(entity, component);
+      };
+    })(this));
+    entity.onComponentRemoved.add((function(_this) {
+      return function(entity, component) {
+        return _this.onComponentRemoved(entity, component);
+      };
+    })(this));
     return this._entities.push(entity);
   };
 
@@ -45,9 +48,8 @@ Game = (function() {
     return this._entities.length;
   };
 
-  Game.prototype.getEntities = function() {
-    var componentNames, entity, familyId, _i, _len, _ref;
-    componentNames = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
+  Game.prototype.getEntities = function(componentNames) {
+    var entity, familyId, _i, _len, _ref;
     familyId = "$" + (componentNames.join(","));
     if (!this._families[familyId]) {
       this._families[familyId] = new Family(componentNames);
@@ -85,21 +87,23 @@ Game = (function() {
 
   /* Private */
 
-  Game.prototype._onComponentAdded = function(entity, componentName) {
-    var family, id, _i, _len, _results;
+  Game.prototype.onComponentAdded = function(entity, componentName) {
+    var family, id, _ref, _results;
+    _ref = this._families;
     _results = [];
-    for (family = _i = 0, _len = families.length; _i < _len; family = ++_i) {
-      id = families[family];
+    for (id in _ref) {
+      family = _ref[id];
       _results.push(family.onComponentAdded(entity, componentName));
     }
     return _results;
   };
 
-  Game.prototype._onComponentRemoved = function(entity, componentName) {
-    var family, id, _i, _len, _results;
+  Game.prototype.onComponentRemoved = function(entity, componentName) {
+    var family, id, _ref, _results;
+    _ref = this._families;
     _results = [];
-    for (family = _i = 0, _len = families.length; _i < _len; family = ++_i) {
-      id = families[family];
+    for (id in _ref) {
+      family = _ref[id];
       _results.push(family.onComponentRemoved(entity, componentName));
     }
     return _results;

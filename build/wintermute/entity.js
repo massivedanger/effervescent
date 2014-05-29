@@ -22,12 +22,12 @@ Entity = (function() {
 
   Entity.prototype.addComponent = function(component) {
     this._components["$" + component.name] = component;
-    return this.onComponentAdded.emit(component.name);
+    return this.onComponentAdded.emit(this, component.name);
   };
 
   Entity.prototype.removeComponent = function(componentName) {
     this._components["$" + componentName] = void 0;
-    return this.onComponentRemoved.emit(componentName);
+    return this.onComponentRemoved.emit(this, componentName);
   };
 
   return Entity;

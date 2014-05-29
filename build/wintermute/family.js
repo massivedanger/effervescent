@@ -1,5 +1,5 @@
 var Family, _,
-  __slice = [].slice,
+  __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
   __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
 _ = require("lodash");
@@ -7,9 +7,9 @@ _ = require("lodash");
 Family = (function() {
 
   /* Public */
-  function Family() {
-    var componentNames;
-    componentNames = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
+  function Family(componentNames) {
+    this.onComponentRemoved = __bind(this.onComponentRemoved, this);
+    this.onComponentAdded = __bind(this.onComponentAdded, this);
     this._componentNames = componentNames;
     this._entities = [];
   }
@@ -30,7 +30,9 @@ Family = (function() {
   };
 
   Family.prototype.onComponentAdded = function(entity, componentName) {
-    return this.addEntityIfMatches(entity);
+    if (__indexOf.call(this._componentNames, componentName) >= 0) {
+      return this.addEntityIfMatches(entity);
+    }
   };
 
   Family.prototype.onComponentRemoved = function(entity, componentName) {
