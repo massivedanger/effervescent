@@ -22,12 +22,6 @@ gulp.task('watch', function() {
   watch({ glob: './src/**/*.coffee' }, ['coffee']);
 });
 
-gulp.task('doc', function() {
-  var biscotto = require('biscotto');
-  biscotto.run();
-});
-
-
 gulp.task('browserify', ['coffee'], function() {
   browserify({
     entries: ['./build/wintermute.js'],
@@ -51,4 +45,4 @@ gulp.task('clean', function() {
     .pipe(clean());
 });
 
-gulp.task('build', ['test', 'coffee', 'browserify', 'doc']);
+gulp.task('build', ['test', 'coffee', 'browserify']);
