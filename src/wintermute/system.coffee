@@ -1,6 +1,6 @@
 class System
   constructor: ->
-    @world = null
+    @state = null
 
   update: (delta) ->
     throw new Error('Override #update')
