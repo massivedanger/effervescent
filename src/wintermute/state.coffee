@@ -5,12 +5,12 @@ class State
   constructor: ->
     @game = null
 
-    @_families = {}
-    @_systems = []
-    @_entities = []
+    @families = {}
+    @systems = []
+    @entities = []
 
   addEntity: (entity) ->
-    for family in @_families
+    for family in @families
       family.addEntityIfMatches entity
 
     entity.onComponentAdded.add (entity, component) =>
@@ -19,45 +19,45 @@ class State
     entity.onComponentRemoved.add (entity, component) =>
       @onComponentRemoved entity, component
 
-    @_entities.push entity
+    @entities.push entity
 
   removeEntity: (entity) ->
-    for id, family of @_families
+    for id, family of @families
       family.removeEntity entity
 
-    @_entities = _.without @_entities, entity
-    @_entities.length
+    @entities = _.without @entities, entity
+    @entities.length
 
   getEntities: (componentNames) ->
     familyId = "$#{componentNames.join(",")}"
-    unless @_families[familyId]
-      @_families[familyId] = new Family componentNames
+    unless @families[familyId]
+      @families[familyId] = new Family componentNames
 
-      for entity in @_entities
-        @_families[familyId].addEntityIfMatches entity
+      for entity in @entities
+        @families[familyId].addEntityIfMatches entity
 
-    @_families[familyId].getEntities()
+    @families[familyId].getEntities()
 
   addSystem: (system) ->
     system.state = this
-    @_systems.push system
+    @systems.push system
 
   removeSystem: (system) ->
     system.state = null
-    @_systems = _.without @_systems, system
-    @_systems.length
+    @systems = _.without @systems, system
+    @systems.length
 
   reset: ->
-    @_entities = []
-    @_systems = []
-    @_families = {}
+    @entities = []
+    @systems = []
+    @families = {}
 
   onComponentAdded: (entity, componentName) ->
-    for id, family of @_families
+    for id, family of @families
       family.onComponentAdded entity, componentName
 
   onComponentRemoved: (entity, componentName) ->
-    for id, family of @_families
+    for id, family of @families
       family.onComponentRemoved entity, componentName
 
   enter: ->
@@ -69,7 +69,7 @@ class State
   resume: ->
 
   update: (delta) ->
-    for system in @_systems
+    for system in @systems
       system.update delta
 
 module.exports = State
