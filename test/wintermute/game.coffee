@@ -9,10 +9,6 @@ describe "Game", ->
     game = new Game()
     state = new State()
 
-  it "can take a container", ->
-    game = new Game(container: "#game")
-    expect(game.container).to.be.equal("#game")
-
   it "can push a state on its stack", ->
     game.pushState state
     expect(game.getCurrentState()).to.be.equal state

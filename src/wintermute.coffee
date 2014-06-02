@@ -1,6 +1,4 @@
 Wintermute =
-  server: true
-
   # Core
   Game: require "./wintermute/game"
 
@@ -14,8 +12,6 @@ Wintermute =
   Vector2: require "./wintermute/vector2"
 
 if typeof window != "undefined"
-  Wintermute.server = false
-
   # Browser libs
   Wintermute.PIXI = require "pixi.js"
   Wintermute.Zepto = require "zepto-browserify"
