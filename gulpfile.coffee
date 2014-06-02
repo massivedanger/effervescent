@@ -23,7 +23,8 @@ gulp.task 'watch', ->
 gulp.task 'browserify', ['coffee'], ->
   browserify
     entries: ['./build/wintermute.js'],
-    extensions: ['.js']
+    extensions: ['.js'],
+    standalone: "Wintermute"
   .bundle().on('error', gutil.log)
   .pipe(source('wintermute.js'))
   .pipe(gulp.dest('./dist/'))

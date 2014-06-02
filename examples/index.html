@@ -4,12 +4,15 @@
 <head>
   <meta charset="utf-8">
   <title>Wintermute Example</title>
-  <script src="../dist/wintermute.js"></script>
-  <script>
-    game = new Wintermute.Game({ container: "#game" })
-  </script>
+  <style>
+    html { width: 100%; height: 100%; overflow: hidden; }
+    body { margin: 0; background: #fff; color: #333; min-height: 100%; }
+  </style>
 </head>
 <body>
-  <div id="game"></div>
+  <script src="../dist/wintermute.js"></script>
+  <script>
+    game = new Wintermute.Game({ container: "body" })
+  </script>
 </body>
 </html>

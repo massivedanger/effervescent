@@ -1,44 +1,35 @@
 State = require "./state"
 _ = require "lodash"
+server = true
 
 if typeof window != "undefined"
   PIXI = require "pixi.js"
-  Zepto = require "zepto-browserify"
+  jQuery = require "jquery"
+  server = false
 
 class Game
   constructor: (options = {}) ->
     @states = []
     @deltaTime = 0
     @running = true
-    @server = true
 
-    if PIXI and Zepto
-      @server = false
-      @container = Zepto.$ options.container
-      @stage = createStage()
-      @renderer = createRenderer()
+    unless server
+      @container = jQuery(options.container || "body")
+      @stage = @createStage()
+      @renderer = @createRenderer()
 
       @container.html @renderer.view
 
-  run: ->
-    while @running
-      time = Date.now()
-      @deltaTime = time - (@deltaTime || time)
+    @scheduleNext @tick.bind(this)
 
-      @update()
-      @render()
+  tick: (time) ->
+    @deltaTime = time - (@lastUpdateTime || time)
+    @lastUpdateTime = time
 
-  pushState: (state) ->
-    @states.push state
+    @update()
+    @render()
 
-  popState: (state) ->
-    @states.pop()
-
-  changeState: (state) ->
-    @states = [state]
-
-  getCurrentState: ->
-    _.last @states
+    @scheduleNext @tick.bind(this)
 
   update: ->
     for state in @states
@@ -47,13 +38,40 @@ class Game
   render: ->
     return unless not @server
 
-    requestAnimationFrame ->
-      @renderer.render @stage
+    @renderer.render @stage
+
+  addChildToStage: (child) ->
+    @stage.addChild child
+
+  removeChildFromStage: (child) ->
+    @stage.removeChild child
+
+  pushState: (state) ->
+    state.game = this
+    @states.push state
+
+  popState: ->
+    state = @states.pop()
+    state.game = null
+    state
+
+  changeState: (state) ->
+    state.game = this
+    @states = [state]
+
+  getCurrentState: ->
+    _.last @states
 
   createStage: ->
     new PIXI.Stage(0x000000)
 
   createRenderer: ->
     PIXI.autoDetectRenderer(@container.width(), @container.height())
+
+  scheduleNext: (callback) ->
+    if server
+      process.nextTick callback
+    else
+      requestAnimationFrame callback
 
 module.exports = Game

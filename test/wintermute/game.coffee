@@ -9,6 +9,9 @@ describe "Game", ->
     game = new Game()
     state = new State()
 
+    game.update = ->
+      game.running = false
+
   it "can push a state on its stack", ->
     game.pushState state
     expect(game.getCurrentState()).to.be.equal state
@@ -39,19 +42,13 @@ describe "Game", ->
 
     expect(game.getCurrentState()).to.be.equal state
 
-  it "can run", ->
-    game.update = ->
-      game.running = false
-
-    game.run()
-
+  it "can tick", ->
     expect(game.deltaTime).to.be.equal 0
-    expect(game.running).to.be.false
 
   it "updates all states", ->
-    state.update = sinon.spy()
     game.pushState state
+    state.update = sinon.spy()
 
     game.update()
 
-    expect(state.update).to.have.been.calledWith 0
+    expect(state.update).to.have.been.calledWith game.deltaTime

@@ -14,12 +14,12 @@ Wintermute =
 if typeof window != "undefined"
   # Browser libs
   Wintermute.PIXI = require "pixi.js"
-  Wintermute.Zepto = require "zepto-browserify"
+  Wintermute.jQuery = require "jquery"
 
   # Graphics
-  Sprite: require "./wintermute/sprite"
+  Wintermute.Sprite = require "./wintermute/sprite"
 
   # Input
-  Input: require "./wintermute/input"
+  Wintermute.Input = require "./wintermute/input"
 
 module.exports = Wintermute
