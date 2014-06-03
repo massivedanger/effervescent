@@ -1,7 +1,7 @@
 describe "Family", ->
-  Entity = require "../../src/wintermute/entity"
-  Component = require "../../src/wintermute/component"
-  Family = require "../../src/wintermute/family"
+  Entity = requireFromSrc "effervescent/entity"
+  Component = requireFromSrc "effervescent/component"
+  Family = requireFromSrc "effervescent/family"
 
   entity = null
   component = null

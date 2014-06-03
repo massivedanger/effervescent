@@ -1,4 +1,4 @@
-Wintermute =
+Effervescent =
   # Core
   Game: require "./wintermute/game"
 
@@ -13,13 +13,13 @@ Wintermute =
 
 if typeof window != "undefined"
   # Browser libs
-  Wintermute.PIXI = require "pixi.js"
-  Wintermute.jQuery = require "jquery"
+  Effervescent.PIXI = require "pixi.js"
+  Effervescent.jQuery = require "jquery"
 
   # Graphics
-  Wintermute.Sprite = require "./wintermute/sprite"
+  Effervescent.Sprite = require "./wintermute/sprite"
 
   # Input
-  Wintermute.Input = require "./wintermute/input"
+  Effervescent.Input = require "./wintermute/input"
 
-module.exports = Wintermute
+module.exports = Effervescent

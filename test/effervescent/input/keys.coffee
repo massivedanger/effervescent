@@ -1,5 +1,5 @@
 describe "Keys", ->
-  Keys = require "../../../src/wintermute/input/keys"
+  Keys = requireFromSrc "effervescent/input/keys"
   window = null
   event = null
 

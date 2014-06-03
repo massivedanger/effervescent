@@ -1,6 +1,6 @@
 describe "Game", ->
-  Game = require "../../src/wintermute/game"
-  State = require "../../src/wintermute/state"
+  Game = requireFromSrc "effervescent/game"
+  State = requireFromSrc "effervescent/state"
 
   game = null
   state = null

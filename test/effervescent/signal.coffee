@@ -1,5 +1,5 @@
 describe "Signal", ->
-  Signal = require "../../src/wintermute/signal"
+  Signal = requireFromSrc "effervescent/signal"
   signal = null
 
   beforeEach ->

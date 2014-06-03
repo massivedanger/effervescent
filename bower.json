@@ -1,11 +1,11 @@
 {
-  "name": "wintermute",
+  "name": "Effervescent",
   "version": "0.0.0",
   "authors": [
     "Evan Walsh <evan@massivedanger.com>"
   ],
   "description": "A game engine",
-  "main": "dist/wintermute.js",
+  "main": "dist/effervescent.js",
   "keywords": [
     "game",
     "ecs",

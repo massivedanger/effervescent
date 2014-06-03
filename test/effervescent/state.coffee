@@ -1,8 +1,8 @@
 describe "State", ->
-  State = require "../../src/wintermute/state"
-  Entity = require "../../src/wintermute/entity"
-  Component = require "../../src/wintermute/component"
-  System = require "../../src/wintermute/system"
+  State = requireFromSrc "effervescent/state"
+  Entity = requireFromSrc "effervescent/entity"
+  Component = requireFromSrc "effervescent/component"
+  System = requireFromSrc "effervescent/system"
 
   state = null
   entity = null

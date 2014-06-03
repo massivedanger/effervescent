@@ -1,6 +1,6 @@
 describe "Entity", ->
-  Entity = require "../../src/wintermute/entity"
-  Component = require "../../src/wintermute/component"
+  Entity = requireFromSrc "ffervescent/entity"
+  Component = requireFromSrc "effervescent/component"
   entity = null
   component = null
 

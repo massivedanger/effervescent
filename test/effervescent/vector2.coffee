@@ -1,5 +1,5 @@
 describe "Vector2", ->
-  Vector2 = require "../../src/wintermute/vector2"
+  Vector2 = requireFromSrc "effervescent/vector2"
 
   vector = null
 

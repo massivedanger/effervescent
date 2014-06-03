@@ -1,5 +1,5 @@
 describe "Component", ->
-  Component = require "../../src/wintermute/component"
+  Component = requireFromSrc "effervescent/component"
   component = null
 
   beforeEach ->

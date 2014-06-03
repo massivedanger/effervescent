@@ -1,5 +1,5 @@
 describe "Sprite", ->
-  #Sprite = require "../../src/wintermute/sprite"
+  #Sprite = requireFromSrc "effervescent/sprite"
 
   #sprite = null
 

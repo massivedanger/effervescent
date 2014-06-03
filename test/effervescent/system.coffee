@@ -1,5 +1,5 @@
 describe "System", ->
-  System = require "../../src/wintermute/system"
+  System = requireFromSrc "effervescent/system"
 
   system = null
 

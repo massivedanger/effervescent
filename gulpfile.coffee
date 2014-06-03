@@ -22,18 +22,18 @@ gulp.task 'watch', ->
 
 gulp.task 'browserify', ['coffee'], ->
   browserify
-    entries: ['./build/wintermute.js'],
+    entries: ['./build/effervescent.js'],
     extensions: ['.js'],
-    standalone: "Wintermute"
+    standalone: "effervescent"
   .bundle().on('error', gutil.log)
-  .pipe(source('wintermute.js'))
+  .pipe(source('effervescent.js'))
   .pipe(gulp.dest('./dist/'))
 
 gulp.task 'test', ->
    gulp.src(['test/test.coffee', 'test/**/*.coffee'])
     .pipe(mocha(
       compilers: 'coffee:coffee-script/register',
-      globals: ['chai', 'expect', 'sinon']
+      globals: ['chai', 'expect', 'sinon', 'requireFromSrc']
     )).on('error', gutil.log)
 
 gulp.task 'clean', ->

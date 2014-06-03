@@ -1,5 +1,5 @@
 describe "Mouse", ->
-  Mouse = require "../../../src/wintermute/input/mouse"
+  Mouse = requireFromSrc "effervescent/input/mouse"
   window = null
 
   beforeEach ->
