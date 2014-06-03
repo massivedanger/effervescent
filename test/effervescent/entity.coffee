@@ -1,5 +1,5 @@
 describe "Entity", ->
-  Entity = requireFromSrc "ffervescent/entity"
+  Entity = requireFromSrc "effervescent/entity"
   Component = requireFromSrc "effervescent/component"
   entity = null
   component = null
