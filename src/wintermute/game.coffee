@@ -23,21 +23,20 @@ class Game
     @scheduleNext @tick.bind(this)
 
   tick: (time) ->
-    @deltaTime = time - (@lastUpdateTime || time)
-    @lastUpdateTime = time
+    if @running
+      @deltaTime = time - (@lastUpdateTime || time)
+      @lastUpdateTime = time
 
-    @update()
-    @render()
+      @update()
+      @render() unless server
 
-    @scheduleNext @tick.bind(this)
+      @scheduleNext @tick.bind(this)
 
   update: ->
     for state in @states
       state.update @deltaTime
 
   render: ->
-    return unless not @server
-
     @renderer.render @stage
 
   addChildToStage: (child) ->

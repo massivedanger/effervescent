@@ -1,12 +1,7 @@
 describe "Sprite", ->
-  Sprite = require "../../src/wintermute/sprite"
+  #Sprite = require "../../src/wintermute/sprite"
 
-  sprite = null
+  #sprite = null
 
-  beforeEach ->
-    sprite = new Sprite()
-
-  it "has an image", ->
-    newSprite = new Sprite(image: 'image')
-
-    expect(newSprite.image).to.equal('image')
+  #beforeEach ->
+  #  sprite = new Sprite()

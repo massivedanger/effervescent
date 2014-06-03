@@ -10,6 +10,9 @@ describe "Game", ->
     state = new State()
 
     game.update = ->
+      for state in game.states
+        state.update game.deltaTime
+
       game.running = false
 
   it "can push a state on its stack", ->

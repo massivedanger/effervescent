@@ -1,4 +1,4 @@
-!function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self),f.Wintermute=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(_dereq_,module,exports){
+!function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self),f.Effervescent=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(_dereq_,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -64,27 +64,27 @@ process.chdir = function (dir) {
 };
 
 },{}],2:[function(_dereq_,module,exports){
-var Wintermute;
+var Effervescent;
 
-Wintermute = {
-  Game: _dereq_("./wintermute/game"),
-  Entity: _dereq_("./wintermute/entity"),
-  System: _dereq_("./wintermute/system"),
-  Component: _dereq_("./wintermute/component"),
-  Family: _dereq_("./wintermute/family"),
-  Vector2: _dereq_("./wintermute/vector2")
+Effervescent = {
+  Game: _dereq_("./effervescent/game"),
+  Entity: _dereq_("./effervescent/entity"),
+  System: _dereq_("./effervescent/system"),
+  Component: _dereq_("./effervescent/component"),
+  Family: _dereq_("./effervescent/family"),
+  Vector2: _dereq_("./effervescent/vector2")
 };
 
 if (typeof window !== "undefined") {
-  Wintermute.PIXI = _dereq_("pixi.js");
-  Wintermute.jQuery = _dereq_("jquery");
-  Wintermute.Sprite = _dereq_("./wintermute/sprite");
-  Wintermute.Input = _dereq_("./wintermute/input");
+  Effervescent.PIXI = _dereq_("pixi.js");
+  Effervescent.jQuery = _dereq_("jquery");
+  Effervescent.Sprite = _dereq_("./effervescent/sprite");
+  Effervescent.Input = _dereq_("./effervescent/input");
 }
 
-module.exports = Wintermute;
+module.exports = Effervescent;
 
-},{"./wintermute/component":3,"./wintermute/entity":4,"./wintermute/family":5,"./wintermute/game":6,"./wintermute/input":7,"./wintermute/sprite":11,"./wintermute/system":13,"./wintermute/vector2":14,"jquery":15,"pixi.js":17}],3:[function(_dereq_,module,exports){
+},{"./effervescent/component":3,"./effervescent/entity":4,"./effervescent/family":5,"./effervescent/game":6,"./effervescent/input":7,"./effervescent/sprite":11,"./effervescent/system":13,"./effervescent/vector2":14,"jquery":15,"pixi.js":17}],3:[function(_dereq_,module,exports){
 var Component;
 
 Component = (function() {
@@ -437,23 +437,23 @@ module.exports = Signal;
 },{}],11:[function(_dereq_,module,exports){
 var PIXI, Sprite;
 
-PIXI = _dereq_("pixi.js");
-
-Sprite = (function() {
-  function Sprite(options) {
-    var texture;
-    if (options == null) {
-      options = {};
+if (typeof window !== "undefined") {
+  PIXI = _dereq_("pixi.js");
+  Sprite = (function() {
+    function Sprite(options) {
+      var texture;
+      if (options == null) {
+        options = {};
+      }
+      texture = PIXI.Texture.fromImage(options.image);
+      this.sprite = new PIXI.Sprite(texture);
     }
-    texture = PIXI.Texture.fromImage(options.image);
-    this.sprite = new PIXI.Sprite(texture);
-  }
 
-  return Sprite;
+    return Sprite;
 
-})();
-
-module.exports = Sprite;
+  })();
+  module.exports = Sprite;
+}
 
 },{"pixi.js":17}],12:[function(_dereq_,module,exports){
 var Family, State, _;
