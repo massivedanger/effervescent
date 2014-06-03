@@ -36,7 +36,7 @@ class State
       for entity in @entities
         @families[familyId].addEntityIfMatches entity
 
-    @families[familyId].getEntities()
+    @families[familyId].entities
 
   addSystem: (system) ->
     system.state = this

@@ -2,31 +2,28 @@ _ = require "lodash"
 
 class Family
   constructor: (componentNames) ->
-    @_componentNames = componentNames
-    @_entities = []
-
-  getEntities: ->
-    @_entities
+    @componentNames = componentNames
+    @entities = []
 
   addEntityIfMatches: (entity) ->
-    if not (entity in @_entities) and @_entityMatches entity
-      @_entities.push entity
+    if not (entity in @entities) and @entityMatches entity
+      @entities.push entity
 
   removeEntity: (entity) ->
-    @_entities = _.without @_entities, entity
-    @_entities.length
+    @entities = _.without @entities, entity
+    @entities.length
 
   onComponentAdded: (entity, componentName) =>
-    if componentName in @_componentNames
+    if componentName in @componentNames
       @addEntityIfMatches entity
 
   onComponentRemoved: (entity, componentName) =>
-    if entity in @_entities
-      if componentName in @_componentNames
-        @_entities = _.without @_entities, entity
+    if entity in @entities
+      if componentName in @componentNames
+        @entities = _.without @entities, entity
 
-  _entityMatches: (entity) ->
-    for name in @_componentNames
+  entityMatches: (entity) ->
+    for name in @componentNames
       unless entity.hasComponent name
         return false
 
