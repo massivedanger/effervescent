@@ -2,7 +2,7 @@ Keys = require "./input/keys"
 Mouse = require "./input/mouse"
 
 Input =
-  keys: Keys
-  mouse: Mouse
+  Keys: require "./input/keys"
+  Mouse: require "./input/mouse"
 
 module.exports = Input

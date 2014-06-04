@@ -1,5 +1,7 @@
 State = require "./state"
 _ = require "lodash"
+p2 = require "p2"
+
 server = true
 
 if typeof window != "undefined"
@@ -13,12 +15,8 @@ class Game
     @deltaTime = 0
     @running = true
 
-    unless server
-      @container = jQuery(options.container || "body")
-      @stage = @createStage()
-      @renderer = @createRenderer()
-
-      @container.html @renderer.view
+    @setupGraphics unless server
+    @setupPhysics(options.physics) if options.physics
 
     @scheduleNext @tick.bind(this)
 
@@ -61,11 +59,23 @@ class Game
   getCurrentState: ->
     _.last @states
 
+  setupGraphics: ->
+    @container = jQuery(options.container ? "body")
+    @stage = @createStage()
+    @renderer = @createRenderer()
+
+    @container.append @renderer.view
+
   createStage: ->
     new PIXI.Stage(0x000000)
 
   createRenderer: ->
     PIXI.autoDetectRenderer(@container.width(), @container.height())
+
+  setupPhysics: (options = {})->
+    @physics =
+      world: new Physics.World(gravity: options.gravity ? [0, 0]),
+      enabled: options.enabled ? true
 
   scheduleNext: (callback) ->
     if server

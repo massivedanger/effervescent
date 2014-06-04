@@ -1,25 +1,24 @@
 Effervescent =
   # Core
-  Game: require "./wintermute/game"
+  Game: require "./effervescent/game"
 
   # ECS
-  Entity: require "./wintermute/entity"
-  System: require "./wintermute/system"
-  Component: require "./wintermute/component"
-  Family: require "./wintermute/family"
+  Entity: require "./effervescent/entity"
+  System: require "./effervescent/system"
+  Component: require "./effervescent/component"
+  Family: require "./effervescent/family"
 
   # Math
-  Vector2: require "./wintermute/vector2"
+  Vector2: require "./effervescent/vector2"
+
+  # Physics
+  Physics: require "./effervescent/physics"
 
 if typeof window != "undefined"
-  # Browser libs
-  Effervescent.PIXI = require "pixi.js"
-  Effervescent.jQuery = require "jquery"
-
   # Graphics
-  Effervescent.Sprite = require "./wintermute/sprite"
+  Effervescent.Sprite = require "./effervescent/sprite"
 
   # Input
-  Effervescent.Input = require "./wintermute/input"
+  Effervescent.Input = require "./effervescent/input"
 
 module.exports = Effervescent
