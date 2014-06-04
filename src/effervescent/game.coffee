@@ -31,6 +31,9 @@ class Game
       @scheduleNext @tick.bind(this)
 
   update: ->
+    if @physics and @physics.enabled
+      @physics.world.update @deltaTime
+
     for state in @states
       state.update @deltaTime
 
