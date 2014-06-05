@@ -5,6 +5,7 @@ watch = require 'gulp-watch'
 mocha = require 'gulp-mocha'
 clean = require 'gulp-clean'
 bump = require 'gulp-bump'
+
 argv = require('yargs').argv
 
 gulp.task 'default', ['coffee']
@@ -41,4 +42,27 @@ gulp.task 'version', ->
     .pipe bump version: argv.to
     .pipe gulp.dest('./')
 
+gulp.task 'publish:npm', (cb) ->
+  exec "npm publish", (err, stdout, stderr) ->
+    console.log stdout
+    console.log stderr
+    cb err
+
+gulp.task 'publish:tag', (cb) ->
+  pkg = require "./package.json"
+  exec "git tag -a 'v#{pkg.version}'", (err, stdout, stderr) ->
+    console.log stdout
+    console.log stderr
+    cb err
+
+gulp.task 'publish:git', (cb) ->
+  exec "git push --tags", (err, stdout, stderr) ->
+    console.log stdout
+    console.log stderr
+    cb err
+
+gulp.task 'publish', ['publish:tag', 'publish:git', 'publish:npm']
+
 gulp.task 'build', ['test', 'coffee']
+
+
