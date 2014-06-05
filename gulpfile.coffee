@@ -4,6 +4,8 @@ coffee = require 'gulp-coffee'
 watch = require 'gulp-watch'
 mocha = require 'gulp-mocha'
 clean = require 'gulp-clean'
+bump = require 'gulp-bump'
+argv = require('yargs').argv
 
 gulp.task 'default', ['coffee']
 
@@ -27,5 +29,16 @@ gulp.task 'test', ->
 gulp.task 'clean', ->
   gulp.src ['build', 'dist'], read: false
     .pipe clean()
+
+gulp.task 'bump', ->
+  gulp.src './package.json'
+    .pipe bump type: (argv.type or 'patch')
+    .pipe gulp.dest('./')
+
+gulp.task 'version', ->
+  return console.error("You must provide a version with the --to flag") unless argv.to
+  gulp.src './package.json'
+    .pipe bump version: argv.to
+    .pipe gulp.dest('./')
 
 gulp.task 'build', ['test', 'coffee']
