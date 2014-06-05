@@ -1,1 +1,0 @@
-game = new Effervescent.Game()

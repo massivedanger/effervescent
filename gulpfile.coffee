@@ -5,9 +5,6 @@ watch = require 'gulp-watch'
 mocha = require 'gulp-mocha'
 clean = require 'gulp-clean'
 
-browserify = require 'browserify'
-source = require 'vinyl-source-stream'
-
 gulp.task 'default', ['coffee']
 
 gulp.task 'coffee', ->
@@ -20,15 +17,6 @@ gulp.task 'coffee', ->
 gulp.task 'watch', ->
   watch glob: './src/**/*.coffee', ['coffee']
 
-gulp.task 'browserify', ['coffee'], ->
-  browserify
-    entries: ['./build/effervescent.js'],
-    extensions: ['.js'],
-    standalone: "effervescent"
-  .bundle().on('error', gutil.log)
-  .pipe(source('effervescent.js'))
-  .pipe(gulp.dest('./dist/'))
-
 gulp.task 'test', ->
    gulp.src(['test/test.coffee', 'test/**/*.coffee'])
     .pipe(mocha(
@@ -40,4 +28,4 @@ gulp.task 'clean', ->
   gulp.src ['build', 'dist'], read: false
     .pipe clean()
 
-gulp.task 'build', ['test', 'coffee', 'browserify']
+gulp.task 'build', ['test', 'coffee']

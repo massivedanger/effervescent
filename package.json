@@ -20,7 +20,6 @@
     "url": "http://github.com/massivedanger/effervescent.git"
   },
   "devDependencies": {
-    "browserify": "^4.1.5",
     "chai": "^1.9.1",
     "coffee-script": "^1.7.1",
     "gulp": "^3.6.2",
