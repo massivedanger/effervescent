@@ -14,8 +14,12 @@ Effervescent =
   # Physics
   Physics: require "./effervescent/physics"
 
-  # 3rd-party libs
+  # Data
   Datastore: require "nedb"
+  Player: require "./effervescent/player"
+  Preferences: require "./effervescent/preferences"
+
+  logger: require "./effervescent/logger"
 
 if typeof window != "undefined"
   # Graphics
