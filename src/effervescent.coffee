@@ -14,6 +14,9 @@ Effervescent =
   # Physics
   Physics: require "./effervescent/physics"
 
+  # 3rd-party libs
+  Datastore: require "nedb"
+
 if typeof window != "undefined"
   # Graphics
   Effervescent.Sprite = require "./effervescent/sprite"
