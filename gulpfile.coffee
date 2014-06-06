@@ -9,23 +9,25 @@ bump = require 'gulp-bump'
 argv = require('yargs').argv
 
 gulp.task 'default', ['coffee']
+gulp.task 'publish', ['publish:tag', 'publish:git', 'publish:npm']
+gulp.task 'build', ['test', 'coffee']
 
 gulp.task 'coffee', ->
   gulp.src './src/**/*.coffee'
     .pipe coffee
       bare: true
-    .on('error', gutil.log)
-    .pipe gulp.dest('./build/')
+    .on 'error', gutil.log
+    .pipe gulp.dest './build/'
 
 gulp.task 'watch', ->
   watch glob: './src/**/*.coffee', ['coffee']
 
 gulp.task 'test', ->
-   gulp.src(['test/test.coffee', 'test/**/*.coffee'])
-    .pipe(mocha(
+   gulp.src ['test/test.coffee', 'test/**/*.coffee']
+    .pipe mocha
       compilers: 'coffee:coffee-script/register',
       globals: ['chai', 'expect', 'sinon', 'requireFromSrc']
-    )).on('error', gutil.log)
+    .on 'error', gutil.log
 
 gulp.task 'clean', ->
   gulp.src ['build', 'dist'], read: false
@@ -33,14 +35,14 @@ gulp.task 'clean', ->
 
 gulp.task 'bump', ->
   gulp.src './package.json'
-    .pipe bump type: (argv.type or 'patch')
-    .pipe gulp.dest('./')
+    .pipe bump type:  argv.type or 'patch'
+    .pipe gulp.dest './'
 
 gulp.task 'version', ->
-  return console.error("You must provide a version with the --to flag") unless argv.to
+  return console.error "You must provide a version with the --to flag" unless argv.to
   gulp.src './package.json'
     .pipe bump version: argv.to
-    .pipe gulp.dest('./')
+    .pipe gulp.dest './'
 
 gulp.task 'publish:npm', (cb) ->
   exec "npm publish", (err, stdout, stderr) ->
@@ -60,9 +62,3 @@ gulp.task 'publish:git', (cb) ->
     console.log stdout
     console.log stderr
     cb err
-
-gulp.task 'publish', ['publish:tag', 'publish:git', 'publish:npm']
-
-gulp.task 'build', ['test', 'coffee']
-
-
