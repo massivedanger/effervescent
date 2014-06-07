@@ -35,3 +35,13 @@ describe "Entity", ->
   it "can get components", ->
     entity.addComponent component
     expect(entity.getComponent component.name).to.be.equal(component)
+
+  it "has a callback when it's added to a state", ->
+    entity.addedToState "state"
+    expect(entity.state).to.be.equal "state"
+
+  it "has a callback when it's removed from a state", ->
+    entity.state = "state"
+    entity.removedFromState "state"
+
+    expect(entity.state).to.be.null

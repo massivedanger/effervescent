@@ -20,13 +20,17 @@ class State
       @onComponentRemoved entity, component
 
     @entities.push entity
+    entity.addedToState this
 
   removeEntity: (entity) ->
     for id, family of @families
       family.removeEntity entity
 
-    @entities = _.without @entities, entity
-    @entities.length
+    if entity.state is this
+      @entities = _.without @entities, entity
+      entity.removedFromState this
+
+      @entities.length
 
   getEntities: (componentNames) ->
     familyId = "$#{componentNames.join(",")}"
