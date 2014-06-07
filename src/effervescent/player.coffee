@@ -1,5 +1,16 @@
 class Player
-  @gameName = "Effervescent Game"
+  os = require "os"
+  path = require "path"
+  resourcesPath = if process.resourcesPath
+    # We are a packaged atom-shell app
+    path.join(process.resourcesPath, "app")
+  else
+    process.cwd()
+
+  @gameName: try
+    require(path.join resourcesPath, "game.json")?.name || "Effervescent Game"
+  catch
+    "Effervescent Game"
 
   @filePath: (file = "") ->
     platformSpecific = switch os.platform()
@@ -13,12 +24,9 @@ class Player
     process.env.HOMEPATH ||
     process.env.USERPROFILE
 
-  os = require "os"
-  path = require "path"
-
   slugify = (text, seperator = '_') ->
     text.toLowerCase()
-        .replace(/[^\w ]+/g, '')
-        .replace(/\s+/g, seperator)
+      .replace(/[^\w ]+/g, '')
+      .replace(/\s+/g, seperator)
 
 module.exports = Player
