@@ -18,6 +18,18 @@ describe "Entity", ->
       component.name
     )
 
+  it "can add multiple components", ->
+    components = []
+    for i in [1..5]
+      newComponent = new Component()
+      newComponent.name = "testing-#{i}"
+      components.push newComponent
+
+    entity.addComponents components
+
+    for i in [1..5]
+      expect(entity.hasComponent("testing-#{i}")).to.be.true
+
   it "can check for components", ->
     entity.addComponent component
     expect(entity.hasComponent("testing")).to.be.true

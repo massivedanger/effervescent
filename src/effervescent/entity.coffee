@@ -1,7 +1,7 @@
 Signal = require "./signal"
 
 class Entity
-  constructor: (options = {}) ->
+  constructor: ->
     @components = {}
     @onComponentAdded = new Signal()
     @onComponentRemoved = new Signal()
@@ -17,9 +17,19 @@ class Entity
     @components["$#{component.name}"] = component
     @onComponentAdded.emit this, component.name
 
+    this
+
+  addComponents: (components = []) ->
+    for component in components
+      @addComponent component
+
+    this
+
   removeComponent: (componentName) ->
     @components["$#{componentName}"] = undefined
     @onComponentRemoved.emit this, componentName
+
+    this
 
   addedToState: (state) ->
     @state = state
