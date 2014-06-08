@@ -1,8 +1,6 @@
-PIXI = require "pixi.js"
-
-class Sprite
-  constructor: (options = {}) ->
-    texture = PIXI.Texture.fromImage options.image
-    @sprite = new PIXI.Sprite texture
+Sprite =
+  fromImage: (image) ->
+    texture = PIXI.Texture.fromImage image
+    return new PIXI.Sprite texture
 
 module.exports = Sprite

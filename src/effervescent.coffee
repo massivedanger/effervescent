@@ -22,6 +22,9 @@ Effervescent =
   logger: require "./effervescent/logger"
 
 if typeof window != "undefined"
+  global.PIXI = require "pixi.js" unless window.PIXI
+  global.jQuery = require "jquery" unless window.jQuery
+
   # Graphics
   Effervescent.Sprite = require "./effervescent/sprite"
 

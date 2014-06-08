@@ -1,10 +1,6 @@
-State = require "./state"
 _ = require "lodash"
 p2 = require "p2"
-
-unless (server = typeof window is "undefined")
-  PIXI = require "pixi.js"
-  jQuery = require "jquery"
+server = typeof window is "undefined"
 
 class Game
   constructor: (options = {}) ->
