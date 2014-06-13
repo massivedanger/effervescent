@@ -23,7 +23,7 @@ var Player = new Class({
       }
     },
 
-    filePath: function(file) {
+    getFilePath: function(file) {
       if (file == null) {
         file = "";
       }
@@ -31,13 +31,13 @@ var Player = new Class({
       var platformSpecific = (function() {
         switch (os.platform()) {
           case "darwin":
-            return "/Library/Application Support/" + this.gameName;
+            return "/Library/Application Support/" + this.gameName();
           case "linux":
-            return ".config/" + (slugify(this.gameName));
+            return ".config/" + (slugify(this.gameName()));
           case "win32":
-            return "/AppData/" + this.gameName;
+            return "/AppData/" + this.gameName();
         }
-      }).call(this);
+      }).apply(this);
 
       return path.join(homeDirectory, platformSpecific, file);
     }

@@ -11,7 +11,10 @@ var Effervescent = {
   Datastore: require("nedb"),
   Player: require("./effervescent/player"),
   Preferences: require("./effervescent/preferences"),
+  Save: require("./effervescent/save"),
+
   logger: require("./effervescent/logger"),
+
   Class: jsclass.Class,
   Module: jsclass.Module
 };
