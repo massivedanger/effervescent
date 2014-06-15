@@ -8,15 +8,19 @@ var Game = new Class({
     if (options == null) {
       options = {};
     }
+
     this.states = [];
     this.deltaTime = 0;
     this.running = true;
+
     if (!server) {
       this.setupGraphics();
     }
+
     if (options.physics) {
       this.setupPhysics(options.physics);
     }
+
     this.scheduleNext(this.tick.bind(this));
   },
 
@@ -28,7 +32,7 @@ var Game = new Class({
       if (!server) {
         this.render();
       }
-      return this.scheduleNext(this.tick.bind(this));
+      this.scheduleNext(this.tick.bind(this));
     }
   },
 
@@ -42,15 +46,15 @@ var Game = new Class({
   },
 
   render: function() {
-    return this.renderer.render(this.stage);
+    this.renderer.render(this.stage);
   },
 
-  addChildToStage: function(child) {
-    return this.stage.addChild(child);
+  addChild: function(child) {
+    return this.objectContainer.addChild(child);
   },
 
-  removeChildFromStage: function(child) {
-    return this.stage.removeChild(child);
+  removeChild: function(child) {
+    return this.objectContainer.removeChild(child);
   },
 
   pushState: function(state) {
@@ -59,15 +63,15 @@ var Game = new Class({
   },
 
   popState: function() {
-    var state;
-    state = this.states.pop();
+    var state = this.states.pop();
     state.game = null;
+
     return state;
   },
 
   changeState: function(state) {
     state.game = this;
-    return this.states = [state];
+    this.states = [state];
   },
 
   getCurrentState: function() {
@@ -79,12 +83,22 @@ var Game = new Class({
 
     this.container = jQuery((el = options.container) != null ? el : "body");
     this.stage = this.createStage();
+    this.objectContainer = this.createObjectContainer();
     this.renderer = this.createRenderer();
+    this.camera = new Camera(this);
+
     this.container.append(this.renderer.view);
   },
 
   createStage: function() {
     return new PIXI.Stage(0x000000);
+  },
+
+  createObjectContainer: function() {
+    var objectContainer = new PIXI.DisplayObjectContainer();
+    this.stage.addChild(objectContainer);
+
+    return objectContainer;
   },
 
   createRenderer: function() {
