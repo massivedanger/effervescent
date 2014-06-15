@@ -41,11 +41,14 @@ var Vector2 = new Class({
     if (x == null) {
       x = 0.0;
     }
+
     if (y == null) {
       y = 0.0;
     }
+
     this.x += x;
     this.y += y;
+
     return this;
   },
 
@@ -53,11 +56,14 @@ var Vector2 = new Class({
     if (x == null) {
       x = 0.0;
     }
+
     if (y == null) {
       y = 0.0;
     }
+
     this.x -= x;
     this.y -= y;
+
     return this;
   },
 
@@ -65,11 +71,14 @@ var Vector2 = new Class({
     if (x == null) {
       x = 1;
     }
+
     if (y == null) {
       y = 1;
     }
+
     this.x *= x;
     this.y *= y;
+
     return this;
   },
 
@@ -77,11 +86,14 @@ var Vector2 = new Class({
     if (x == null) {
       x = 1;
     }
+
     if (y == null) {
       y = 1;
     }
+
     this.x /= x;
     this.y /= y;
+
     return this;
   },
 
@@ -90,11 +102,12 @@ var Vector2 = new Class({
   },
 
   angle: function(options) {
-    var angle;
     if (options == null) {
       options = {};
     }
-    angle = Math.atan2(this.y, this.x);
+
+    var angle = Math.atan2(this.y, this.x);
+
     if (options.degrees) {
       return radiansToDegrees(angle);
     } else {
@@ -103,11 +116,12 @@ var Vector2 = new Class({
   },
 
   angleTo: function(other, options) {
-    var angle;
     if (options == null) {
       options = {};
     }
-    angle = Math.atan2(this.y - other.y, this.x - other.x);
+
+    var angle = Math.atan2(this.y - other.y, this.x - other.x);
+
     if (options.degrees) {
       return radiansToDegrees(angle);
     } else {
@@ -127,18 +141,21 @@ var Vector2 = new Class({
     if (options == null) {
       options = {};
     }
+
     if (options.x) {
       this.x = clampNumber(this.x, {
         min: options.x[0],
         max: options.x[1]
       });
     }
+
     if (options.y) {
       this.y = clampNumber(this.y, {
         min: options.y[0],
         max: options.y[1]
       });
     }
+
     if (options.all) {
       this.x = clampNumber(this.x, {
         min: options.all[0],
@@ -149,20 +166,23 @@ var Vector2 = new Class({
         max: options.all[1]
       });
     }
+
     return this;
   },
 
   rotate: function(rotation, options) {
-    var originalMagnitude;
     if (options == null) {
       options = {};
     }
     if (options.degrees) {
       rotation /= Vector2.radiansToDegrees;
     }
-    originalMagnitude = this.magnitude();
+
+    var originalMagnitude = this.magnitude();
+
     this.x = Math.cos(rotation) * originalMagnitude;
     this.y = Math.sin(rotation) * originalMagnitude;
+
     return this;
   }
 });
@@ -180,12 +200,13 @@ var radiansToDegrees = function(radians) {
 }
 
 var clampNumber = function(number, options) {
-  var max, min, _ref, _ref1;
   if (options == null) {
     options = {};
   }
-  min = (_ref = options.min) != null ? _ref : 0;
-  max = (_ref1 = options.max) != null ? _ref1 : 1;
+
+  var min = options.min || 0,
+      max = options.max || 1;
+
   if (number < min) {
     return min;
   } else if (number > max) {
