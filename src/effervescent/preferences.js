@@ -1,45 +1,49 @@
 var Player = require("./player");
 var Class = require('jsclass/src/core').Class;
+var Datastore = require("nedb");
 var fse = require("fs-extra");
 
 var Preferences = new Class({
   extend: {
     createFromTemplate: function(file, name, callback) {
-      var destination;
-      if (callback == null) {
-        callback = null;
-      }
-      destination = Player.filePath("" + name + ".json");
-      fs.copy(file, destination, function(err) {
-        return console.error("Error creating preferences from template! " + err);
+      var destination = Player.getFilePath(name + '.db');
+
+      fse.copy(file, destination, function(err) {
+        if (callback) {
+          return callback(err, new Preferences(name));
+        }
       });
-      if (callback) {
-        return callback.call(new Preferences(name));
-      }
     }
   },
 
   initialize: function(name) {
-    this.name = name != null ? name : 'preferences';
-    this.file = Player.filePath("" + this.name + ".json");
-    fse.createFile(this.file, function(err) {
-      if (!err) {
-        return fse.readJson(this.file, function(err, data) {
-          if (err) {
-            console.error(err);
-          }
-          return this.data = data;
-        });
-      }
+    this.name = typeof name !== 'undefined' ? name : "preferences";
+    this.file = Player.getFilePath(this.name + ".db");
+    this.data = new Datastore({
+      filename: this.file,
+      autoload: true
     });
   },
 
-  save: function() {
-    return fse.outputJson(this.file, this.data, function(err) {
-      if (err) {
-        return console.error(err);
-      }
+  get: function(name, callback) {
+    this.data.findOne({ name: name }, function(err, doc) {
+      callback(err, doc.value);
     });
+  },
+
+  set: function(name, value) {
+    this.data.findOne({ name: name }, (function(err, doc) {
+      var newRecord = { name: name, value: value };
+      if (doc) {
+        this.data.update({ name: name }, newRecord);
+      } else {
+        this.data.insert(newRecord);
+      }
+    }).bind(this));
+  },
+
+  remove: function(name) {
+    this.data.remove({ name: name });
   }
 });
 
