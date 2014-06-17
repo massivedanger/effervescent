@@ -85,7 +85,7 @@ var Game = new Class({
     this.stage = this.createStage();
     this.objectContainer = this.createObjectContainer();
     this.renderer = this.createRenderer();
-    this.camera = new Camera(this);
+    this.camera = new Camera(this.objectContainer);
 
     this.container.append(this.renderer.view);
   },
