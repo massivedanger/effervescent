@@ -8,19 +8,12 @@ var Vector2 = new Class({
   },
 
   initialize: function(x, y) {
-    if (x == null) {
-      x = 0.0;
-    }
-    if (y == null) {
-      y = 0.0;
-    }
-
-    this.set(x, y);
+    this.set({ x: (x || 0.0), y: (y || 0.0) });
   },
 
-  set: function(x, y) {
-    this.x = x;
-    this.y = y;
+  set: function(vector) {
+    this.x = vector.x;
+    this.y = vector.y;
 
     return this;
   },
@@ -34,65 +27,33 @@ var Vector2 = new Class({
   },
 
   copyFrom: function(other) {
-    return this.set(other.x, other.y);
+    return this.set({ x: other.x, y: other.y });
   },
 
-  add: function(x, y) {
-    if (x == null) {
-      x = 0.0;
-    }
-
-    if (y == null) {
-      y = 0.0;
-    }
-
-    this.x += x;
-    this.y += y;
+  add: function(vector) {
+    this.x += vector.x;
+    this.y += vector.y;
 
     return this;
   },
 
-  subtract: function(x, y) {
-    if (x == null) {
-      x = 0.0;
-    }
-
-    if (y == null) {
-      y = 0.0;
-    }
-
-    this.x -= x;
-    this.y -= y;
+  subtract: function(vector) {
+    this.x -= vector.x;
+    this.y -= vector.y;
 
     return this;
   },
 
-  multiply: function(x, y) {
-    if (x == null) {
-      x = 1;
-    }
-
-    if (y == null) {
-      y = 1;
-    }
-
-    this.x *= x;
-    this.y *= y;
+  multiply: function(vector) {
+    this.x *= vector.x;
+    this.y *= vector.y;
 
     return this;
   },
 
-  divide: function(x, y) {
-    if (x == null) {
-      x = 1;
-    }
-
-    if (y == null) {
-      y = 1;
-    }
-
-    this.x /= x;
-    this.y /= y;
+  divide: function(vector) {
+    this.x /= vector.x;
+    this.y /= vector.y;
 
     return this;
   },
@@ -184,6 +145,11 @@ var Vector2 = new Class({
     this.y = Math.sin(rotation) * originalMagnitude;
 
     return this;
+  },
+
+  lerp: function(vector, amount) {
+    this.x = lerp(this.x, vector.x, amount);
+    this.y = lerp(this.y, vector.y, amount);
   }
 });
 
@@ -215,5 +181,9 @@ var clampNumber = function(number, options) {
     return number;
   }
 }
+
+var lerp = function(a, b, amount) {
+    return (1 - amount) * a + amount * b;
+};
 
 module.exports = Vector2;
