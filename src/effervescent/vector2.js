@@ -148,7 +148,7 @@ var Vector2 = new Class({
   },
 
   lerp: function(vector, amount) {
-    if (this.equal(vector) {
+    if (this.equal(vector)) {
       return this;
     }
 

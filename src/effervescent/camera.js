@@ -11,26 +11,15 @@ var Camera = new Class({
     this.bounds = this.objectContainer.getBounds();
 
     this.position = new Vector2(options.x || 0, options.y || 0);
-    this.targetPosition = this.position;
-    this.following = null;
+    this.targetPosition = this.position.clone();
   },
 
   update: function(delta) {
-    if (this.following !== null) {
-      this.targetPosition = this.following;
+    if (!this.position.equal(this.targetPosition)) {
+      this.position.add(
+        this.targetPosition.clone().multiply({ x: delta, y: delta })
+      );
     }
-
-    if (!this.position.equal(this.targetPosition) && !tweening) {
-      this.position.add(this.targetPosition.multiply(delta));
-    }
-  },
-
-  follow: function(subject) {
-    this.following = subject;
-  },
-
-  stopFollowing: function() {
-    this.following = null;
   }
 });
 
