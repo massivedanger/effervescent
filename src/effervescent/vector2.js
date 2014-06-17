@@ -148,8 +148,18 @@ var Vector2 = new Class({
   },
 
   lerp: function(vector, amount) {
+    if (this.equal(vector) {
+      return this;
+    }
+
+    if (amount == null) {
+      amount = 1;
+    }
+
     this.x = lerp(this.x, vector.x, amount);
     this.y = lerp(this.y, vector.y, amount);
+
+    return this;
   }
 });
 
