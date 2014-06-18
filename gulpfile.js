@@ -6,9 +6,8 @@ var bump = require('gulp-bump');
 var _ = require("lodash");
 var argv = require('yargs').argv;
 
-gulp.task('default', ['coffee']);
+gulp.task('default', ['test']);
 gulp.task('publish', ['publish:tag', 'publish:git', 'publish:npm']);
-gulp.task('build', ['test']);
 
 gulp.task('test', function() {
   gulp.src(['test/test.js', 'test/**/*.js'])
@@ -16,19 +15,19 @@ gulp.task('test', function() {
     .on('error', gutil.log);
 });
 
-gulp.task('bump', function() {
+gulp.task('version:bump', function() {
   gulp.src('./package.json')
     .pipe(bump({ type:  (argv.type || 'patch') }))
     .pipe(gulp.dest, './');
 });
 
-gulp.task('version', function() {
-  if (!argv.set) {
+gulp.task('version:set', function() {
+  if (!argv.to) {
     var pkg = require("./package.json");
-    return console.log("Current version: " + pkg.version);
+    console.log("Current version: " + pkg.version);
   }
   gulp.src('./package.json')
-    .pipe(bump({ version: argv.set }))
+    .pipe(bump({ version: argv.to }))
     .pipe(gulp.dest, './');
 });
 
