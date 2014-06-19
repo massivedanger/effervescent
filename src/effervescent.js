@@ -8,7 +8,6 @@ var Effervescent = {
   Family: require("./effervescent/family"),
   Vector2: require("./effervescent/vector2"),
   Physics: require("./effervescent/physics"),
-  Datastore: require("nedb"),
   Player: require("./effervescent/player"),
   Preferences: require("./effervescent/preferences"),
   Save: require("./effervescent/save"),
@@ -16,7 +15,8 @@ var Effervescent = {
   logger: require("./effervescent/logger"),
 
   Class: jsclass.Class,
-  Module: jsclass.Module
+  Module: jsclass.Module,
+  Datastore: require("nedb"),
 };
 
 if (typeof window !== "undefined") {
