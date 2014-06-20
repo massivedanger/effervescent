@@ -1,6 +1,6 @@
 describe("Rectangle", function() {
-  var Rectangle = requireFromSrc("effervescent/rectangle");
-  var Vector2 = requireFromSrc("effervescent/vector2");
+  var Rectangle = requireFromSrc("effervescent/geometry/rectangle");
+  var Vector2 = requireFromSrc("effervescent/geometry/vector2");
 
   var rectangle = null;
 

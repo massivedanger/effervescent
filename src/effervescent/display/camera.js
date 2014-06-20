@@ -1,6 +1,6 @@
 var Class = require('jsclass/src/core').Class;
-var Vector2 = require('./vector2');
-var Rectangle = require('./rectangle');
+var Vector2 = require('../geometry/vector2');
+var Rectangle = require('../geometry/rectangle');
 
 var Camera = new Class({
   initialize: function(objectContainer, options) {

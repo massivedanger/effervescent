@@ -1,6 +1,6 @@
 describe("Camera", function() {
-  var Camera = requireFromSrc("effervescent/camera");
-  var Rectangle = requireFromSrc("effervescent/rectangle");
+  var Camera = requireFromSrc("effervescent/display/camera");
+  var Rectangle = requireFromSrc("effervescent/geometry/rectangle");
 
   var camera = null;
 

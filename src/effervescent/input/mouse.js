@@ -1,4 +1,4 @@
-var Vector2 = require("../vector2");
+var Vector2 = require("../geometry/vector2");
 
 var Mouse = {
   position: new Vector2(),

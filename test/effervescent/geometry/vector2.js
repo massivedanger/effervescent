@@ -1,5 +1,5 @@
 describe("Vector2", function() {
-  var Vector2 = requireFromSrc("effervescent/vector2"),
+  var Vector2 = requireFromSrc("effervescent/geometry/vector2"),
       vector = null;
 
   beforeEach(function() {

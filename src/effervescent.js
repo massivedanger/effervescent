@@ -6,7 +6,7 @@ var Effervescent = {
   System: require("./effervescent/system"),
   Component: require("./effervescent/component"),
   Family: require("./effervescent/family"),
-  Vector2: require("./effervescent/vector2"),
+  Geometry: require("./effervescent/geometry"),
   Physics: require("./effervescent/physics"),
   Player: require("./effervescent/player"),
   Preferences: require("./effervescent/preferences"),
@@ -22,7 +22,7 @@ var Effervescent = {
 if (typeof window !== "undefined") {
   global.PIXI = require("pixi.js");
   global.jQuery = require("jquery");
-  Effervescent.Sprite = require("./effervescent/sprite");
+  Effervescent.Display = require("./effervescent/display");
   Effervescent.Input = require("./effervescent/input");
 }
 
