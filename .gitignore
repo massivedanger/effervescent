@@ -3,5 +3,5 @@
 node_modules
 bower_components
 
-doc
+docs/_book
 build
