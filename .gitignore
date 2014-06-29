@@ -4,4 +4,4 @@ node_modules
 bower_components
 
 docs/_book
-build
+npm-debug.log

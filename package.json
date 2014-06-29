@@ -1,6 +1,6 @@
 {
   "name": "effervescent",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "description": "A game engine",
   "main": "src/effervescent.js",
   "scripts": {
