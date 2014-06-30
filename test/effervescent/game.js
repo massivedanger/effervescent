@@ -7,6 +7,7 @@ describe("Game", function() {
   beforeEach(function() {
     game = new Game();
     state = new State();
+
     game.update = function() {
       game.states.forEach(function(state) {
         state.update(game.deltaTime);

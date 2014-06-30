@@ -14,7 +14,7 @@ var Game = new Class({
     this.running = true;
 
     if (!server) {
-      this.setupGraphics();
+      this.setupGraphics(options);
     }
 
     if (options.physics) {
@@ -29,9 +29,11 @@ var Game = new Class({
       this.deltaTime = time - (this.lastUpdateTime || time);
       this.lastUpdateTime = time;
       this.update();
+
       if (!server) {
         this.render();
       }
+
       this.scheduleNext(this.tick.bind(this));
     }
   },
@@ -40,6 +42,7 @@ var Game = new Class({
     if (this.physics && this.physics.enabled) {
       this.physics.world.update(this.deltaTime);
     }
+
     this.states.forEach(function(state) {
       state.update(this.deltaTime);
     });
@@ -78,7 +81,7 @@ var Game = new Class({
     return _.last(this.states);
   },
 
-  setupGraphics: function() {
+  setupGraphics: function(options) {
     var el;
 
     this.container = jQuery((el = options.container) != null ? el : "body");
