@@ -5,6 +5,7 @@ var bump = require('gulp-bump');
 
 var _ = require("lodash");
 var argv = require('yargs').argv;
+var exec = require('child_process').exec;
 
 gulp.task('default', ['test']);
 gulp.task('publish', ['publish:tag', 'publish:git', 'publish:npm']);
