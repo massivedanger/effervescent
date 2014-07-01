@@ -28,7 +28,7 @@ gulp.task('version:set', function() {
   }
   gulp.src('./package.json')
     .pipe(bump({ version: argv.to }))
-    .pipe(gulp.dest, './');
+    .pipe(gulp.dest('./'));
 });
 
 gulp.task('publish:npm', function(cb) {
