@@ -2,6 +2,7 @@ var _ = require("lodash");
 var p2 = require("p2");
 var server = typeof window === "undefined";
 var Class = require('jsclass/src/core').Class;
+var Camera = require('./display/camera');
 
 var Game = new Class({
   initialize: function(options) {
