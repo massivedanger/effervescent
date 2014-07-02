@@ -1,24 +1,12 @@
-var Player = require("./player");
-var Class = require('jsclass/src/core').Class;
-var Datastore = require("nedb");
-var fse = require("fs-extra");
+var Player = require('./player');
+var Datastore = require('nedb');
+var fse = require('fs-extra');
+var Base = require('./base');
 
-var Preferences = new Class({
-  extend: {
-    createFromTemplate: function(file, name, callback) {
-      var destination = Player.getFilePath(name + '.db');
-
-      fse.copy(file, destination, function(err) {
-        if (callback) {
-          return callback(err, new Preferences(name));
-        }
-      });
-    }
-  },
-
-  initialize: function(name) {
-    this.name = typeof name !== 'undefined' ? name : "preferences";
-    this.file = Player.getFilePath(this.name + ".db");
+var Preferences = Base.extend({
+  constructor: function(name) {
+    this.name = typeof name !== 'undefined' ? name : 'preferences';
+    this.file = Player.getFilePath(this.name + '.db');
     this.data = new Datastore({
       filename: this.file,
       autoload: true
@@ -46,5 +34,15 @@ var Preferences = new Class({
     this.data.remove({ name: name });
   }
 });
+
+Preferences.createFromTemplate = function(file, name, callback) {
+  var destination = Player.getFilePath(name + '.db');
+
+  fse.copy(file, destination, function(err) {
+    if (callback) {
+      return callback(err, new Preferences(name));
+    }
+  });
+}
 
 module.exports = Preferences;

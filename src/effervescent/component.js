@@ -1,6 +1,6 @@
-var Class = require('jsclass/src/core').Class;
+var Base = require('./base');
 
-var Component = new Class({
+var Component = Base.extend({
   name: '',
   addedToState: function(state) {},
   removedFromState: function(state) {}

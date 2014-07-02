@@ -1,6 +1,6 @@
-describe("Camera", function() {
-  var Camera = requireFromSrc("effervescent/display/camera");
-  var Rectangle = requireFromSrc("effervescent/geometry/rectangle");
+describe('Camera', function() {
+  var Camera = requireFromSrc('effervescent/display/camera');
+  var Rectangle = requireFromSrc('effervescent/geometry/rectangle');
 
   var camera = null;
 
@@ -20,7 +20,7 @@ describe("Camera", function() {
     camera = new Camera(container);
   });
 
-  it("moves toward its target while updating", function() {
+  it('moves toward its target while updating', function() {
     var currentPosition = camera.position.clone();
     camera.setTargetPosition({ x: 60, y: -100 });
     camera.update(0.016);
@@ -28,7 +28,7 @@ describe("Camera", function() {
     expect(!camera.position.equal(currentPosition));
   });
 
-  it("can follow an object with an X and Y", function() {
+  it('can follow an object with an X and Y', function() {
 
   });
 });

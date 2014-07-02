@@ -1,7 +1,7 @@
-var Class = require('jsclass/src/core').Class;
+var Base = require('./base');
 
-var System = new Class({
-  initialize: function() {
+var System = Base.extend({
+  constructor: function() {
     this.state = null;
   },
 

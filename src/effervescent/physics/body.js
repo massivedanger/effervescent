@@ -1,14 +1,14 @@
-var Class = require('jsclass/src/core').Class;
-var p2 = require("p2");
+var p2 = require('p2');
+var Base = require('../base');
 
-var Body = new Class({
-  initialize: function(options) {
-    var shape;
-    shape = this.newShape(options != null ? options : {
-      shape: "rectangle",
+var Body = Base.extend({
+  constructor: function(options) {
+    var shape = this.newShape(options != null ? options : {
+      shape: 'rectangle',
       width: 100,
       height: 100
     });
+
     this.body = new p2.Body({
       mass: options ? options.mass : 1,
       position: options ? options.position : [0, 0]
@@ -21,17 +21,17 @@ var Body = new Class({
       options = {};
     }
     switch (options.shape.toLowerCase()) {
-      case "circle":
+      case 'circle':
         return this.newCircle(options);
-      case "capsule":
+      case 'capsule':
         return this.newCapsule(options);
-      case "line":
+      case 'line':
         return this.newLine(options);
-      case "particle":
+      case 'particle':
         return this.newParticle(options);
-      case "plane":
+      case 'plane':
         return this.newPlane(options);
-      case "rectangle":
+      case 'rectangle':
         return this.newRectangle(options);
       default:
         return null;

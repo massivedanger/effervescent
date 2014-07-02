@@ -1,38 +1,12 @@
-var _ = require("lodash");
-var Class = require("jsclass/src/core").Class;
+var _ = require('lodash');
 var Player = require('./player');
-var Datastore = require("nedb");
+var Datastore = require('nedb');
+var fse = require('fs-extra');
+var path = require('path');
+var Base = require('./base');
 
-var fse = require("fs-extra");
-var path = require("path");
-
-var isDirectory = function(dir) {
-  return fse.lstatSync(dir).isDirectory();
-}
-
-var Save = new Class({
-  extend: {
-    getDirectory: function() {
-      return Player.getFilePath("saves");
-    },
-
-    getAll: function(callback) {
-      var directory = this.getDirectory();
-      fse.readdir(directory, function(err, files) {
-        saves = files.map(function(file) {
-          return path.join(directory, file);
-        }).filter(function(file) {
-          return isDirectory(file) == true;
-        }).map(function(file) {
-          return new Save(file);
-        });
-
-        return callback(err, saves);
-      });
-    }
-  },
-
-  initialize: function(directory, callback) {
+var Save = Base.extend({
+  constructor: function(directory, callback) {
     this.directory = directory;
     this.databases = {};
 
@@ -52,5 +26,29 @@ var Save = new Class({
     return this;
   }
 });
+
+Save.getDirectory = function() {
+  return Player.getFilePath('saves');
+}
+
+Save.getAll = function(callback) {
+  var directory = this.getDirectory();
+
+  fse.readdir(directory, function(err, files) {
+    saves = files.map(function(file) {
+      return path.join(directory, file);
+    }).filter(function(file) {
+      return isDirectory(file) == true;
+    }).map(function(file) {
+      return new Save(file);
+    });
+
+    return callback(err, saves);
+  });
+}
+
+var isDirectory = function(dir) {
+  return fse.lstatSync(dir).isDirectory();
+}
 
 module.exports = Save;

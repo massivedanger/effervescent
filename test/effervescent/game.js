@@ -1,6 +1,6 @@
-describe("Game", function() {
-  var Game = requireFromSrc("effervescent/game");
-  var State = requireFromSrc("effervescent/state");
+describe('Game', function() {
+  var Game = requireFromSrc('effervescent/game');
+  var State = requireFromSrc('effervescent/state');
   var game = null;
   var state = null;
 
@@ -16,18 +16,18 @@ describe("Game", function() {
     };
   });
 
-  it("can push a state on its stack", function() {
+  it('can push a state on its stack', function() {
     game.pushState(state);
     expect(game.getCurrentState()).to.be.equal(state);
   });
 
-  it("can pop a state", function() {
+  it('can pop a state', function() {
     game.states = [state];
     game.popState();
     expect(game.states).to.be.empty;
   });
 
-  it("can change states entirely", function() {
+  it('can change states entirely', function() {
     var state2 = new State();
     var state3 = new State();
 
@@ -39,7 +39,7 @@ describe("Game", function() {
     expect(game.states.length).to.be.equal(1);
   });
 
-  it("can get the current state", function() {
+  it('can get the current state', function() {
     var state2 = new State();
     var state3 = new State();
 
@@ -50,11 +50,11 @@ describe("Game", function() {
     expect(game.getCurrentState()).to.be.equal(state);
   });
 
-  it("can tick", function() {
+  it('can tick', function() {
     expect(game.deltaTime).to.be.equal(0);
   });
 
-  it("updates all states", function() {
+  it('updates all states', function() {
     game.pushState(state);
     state.update = sinon.spy();
     game.update();

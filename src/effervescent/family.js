@@ -1,17 +1,17 @@
-var _ = require("lodash");
-var Class = require("jsclass/src/core").Class;
-var postal = require("postal");
+var _ = require('lodash');
+var Base = require('./base');
+var postal = require('postal');
 
-var Family = new Class({
-  initialize: function(componentNames) {
+var Family = Base.extend({
+  constructor: function(componentNames) {
     this.componentNames = componentNames;
     this.entities = [];
 
-    var channel = postal.channel("entities");
-    channel.subscribe("component.add", this.entityComponentAdded.bind(this));
-    channel.subscribe("component.remove", this.entityComponentRemoved.bind(this));
-    channel.subscribe("add", this.entityAdded.bind(this));
-    channel.subscribe("remove", this.entityRemoved.bind(this));
+    var channel = postal.channel('entities');
+    channel.subscribe('component.add', this.entityComponentAdded.bind(this));
+    channel.subscribe('component.remove', this.entityComponentRemoved.bind(this));
+    channel.subscribe('add', this.entityAdded.bind(this));
+    channel.subscribe('remove', this.entityRemoved.bind(this));
   },
 
   addEntityIfMatches: function(entity) {

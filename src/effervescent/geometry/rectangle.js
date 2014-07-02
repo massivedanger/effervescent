@@ -1,8 +1,8 @@
-var Class = require('jsclass/src/core').Class;
+var Base = require('../base');
 var Vector2 = require('./vector2');
 
-var Rectangle = new Class({
-  initialize: function(options) {
+var Rectangle = Base.extend({
+  constructor: function(options) {
     if (options == null) {
       options = {};
     }

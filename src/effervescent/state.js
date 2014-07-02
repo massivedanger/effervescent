@@ -1,10 +1,10 @@
-var Family = require("./family");
-var _ = require("lodash");
-var Class = require("jsclass/src/core").Class;
-var postal = require("postal");
+var _ = require('lodash');
+var postal = require('postal');
+var Family = require('./family');
+var Base = require('./base');
 
-var State = new Class({
-  initialize: function() {
+var State = Base.extend({
+  constructor: function() {
     this.game = null;
     this.families = {};
     this.systems = [];
@@ -13,8 +13,8 @@ var State = new Class({
 
   addEntity: function(entity) {
     postal.publish({
-      channel: "entities",
-      topic: "add",
+      channel: 'entities',
+      topic: 'add',
       data: {
         entity: entity
       }
@@ -29,8 +29,8 @@ var State = new Class({
   removeEntity: function(entity) {
     if (entity.state === this) {
       postal.publish({
-        channel: "entities",
-        topic: "remove",
+        channel: 'entities',
+        topic: 'remove',
         data: {
           entity: entity
         }
@@ -43,7 +43,7 @@ var State = new Class({
   },
 
   getEntities: function(componentNames) {
-    var familyId = "$" + (componentNames.join(","));
+    var familyId = '$' + (componentNames.join(','));
     if (!this.families[familyId]) {
       var family = this.families[familyId] = new Family(componentNames);
       this.entities.forEach(function(entity) {

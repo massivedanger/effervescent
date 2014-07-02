@@ -1,1 +1,1 @@
-describe("Sprite", function() {});
+describe('Sprite', function() {});

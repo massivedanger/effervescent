@@ -1,4 +1,4 @@
-var _ = require("lodash");
+var _ = require('lodash');
 
 var Keys = {
   pressed: [],
@@ -8,16 +8,16 @@ var Keys = {
     if (win == null) {
       win = window;
     }
-    win.addEventListener("keydown", this.onKeyDown);
-    win.addEventListener("keyup", this.onKeyUp);
+    win.addEventListener('keydown', this.onKeyDown);
+    win.addEventListener('keyup', this.onKeyUp);
   },
 
   stopListening: function(win) {
     if (win == null) {
       win = window;
     }
-    win.removeEventListener("keydown", this.onKeyDown);
-    return win.removeEventListener("keyup", this.onKeyUp);
+    win.removeEventListener('keydown', this.onKeyDown);
+    return win.removeEventListener('keyup', this.onKeyUp);
   },
 
   onKeyDown: function(event) {

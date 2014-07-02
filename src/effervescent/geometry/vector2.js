@@ -1,13 +1,9 @@
-var _ = require("lodash"),
-    Class = require("jsclass/src/core").Class,
-    postal = require("postal");
+var _ = require('lodash');
+var postal = require('postal');
+var Base = require('../base');
 
-var Vector2 = new Class({
-  extend: {
-    radiansToDegrees: 57.2957795
-  },
-
-  initialize: function(x, y) {
+var Vector2 = Base.extend({
+  constructor: function(x, y) {
     this.set({ x: (x || 0.0), y: (y || 0.0) });
   },
 
@@ -162,6 +158,8 @@ var Vector2 = new Class({
     return this;
   }
 });
+
+Vector2.radiansToDegrees = 57.2957795;
 
 var hypot = function(a, b) {
   if (a === 0) {

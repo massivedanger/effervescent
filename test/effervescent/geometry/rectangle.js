@@ -1,6 +1,6 @@
-describe("Rectangle", function() {
-  var Rectangle = requireFromSrc("effervescent/geometry/rectangle");
-  var Vector2 = requireFromSrc("effervescent/geometry/vector2");
+describe('Rectangle', function() {
+  var Rectangle = requireFromSrc('effervescent/geometry/rectangle');
+  var Vector2 = requireFromSrc('effervescent/geometry/vector2');
 
   var rectangle = null;
 
@@ -8,7 +8,7 @@ describe("Rectangle", function() {
     rectangle = new Rectangle();
   });
 
-  it("can check if a point is within it", function() {
+  it('can check if a point is within it', function() {
     var point1 = new Vector2(0, 0);
     var point2 = new Vector2(1280, 900);
 

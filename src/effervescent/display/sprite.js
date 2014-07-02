@@ -1,9 +1,6 @@
-var Sprite;
-
-Sprite = {
+var Sprite = {
   create: function(image) {
-    var texture;
-    texture = PIXI.Texture.fromImage(image);
+    var texture = PIXI.Texture.fromImage(image);
     return new PIXI.Sprite(texture);
   }
 };

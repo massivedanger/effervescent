@@ -1,9 +1,9 @@
-var Class = require('jsclass/src/core').Class;
+var Base = require('../base');
 var Vector2 = require('../geometry/vector2');
 var Rectangle = require('../geometry/rectangle');
 
-var Camera = new Class({
-  initialize: function(objectContainer, options) {
+var Camera = Base.extend({
+  constructor: function(objectContainer, options) {
     if (options == null) {
       options = {};
     }

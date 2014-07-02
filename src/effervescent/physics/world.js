@@ -1,8 +1,8 @@
-var p2 = require("p2");
-var Class = require("jsclass/src/core").Class;
+var p2 = require('p2');
+var Base = require('../base');
 
-var World = new Class({
-  initialize: function(options) {
+var World = Base.extend({
+  constructor: function(options) {
     if (options == null) {
       options = {};
     }

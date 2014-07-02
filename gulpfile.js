@@ -3,7 +3,7 @@ var gutil = require('gulp-util');
 var mocha = require('gulp-mocha');
 var bump = require('gulp-bump');
 
-var _ = require("lodash");
+var _ = require('lodash');
 var argv = require('yargs').argv;
 var exec = require('child_process').exec;
 
@@ -24,8 +24,8 @@ gulp.task('version:bump', function() {
 
 gulp.task('version:set', function() {
   if (!argv.to) {
-    var pkg = require("./package.json");
-    console.log("Current version: " + pkg.version);
+    var pkg = require('./package.json');
+    console.log('Current version: ' + pkg.version);
   }
   gulp.src('./package.json')
     .pipe(bump({ version: argv.to }))
@@ -33,16 +33,16 @@ gulp.task('version:set', function() {
 });
 
 gulp.task('publish:npm', function(cb) {
-  runCommand("npm publish", cb);
+  runCommand('npm publish', cb);
 });
 
 gulp.task('publish:tag', function(cb) {
-  var pkg = require("./package.json");
-  runCommand("git tag -a 'v" + pkg.version + "'", cb);
+  var pkg = require('./package.json');
+  runCommand('git tag -a "v' + pkg.version + '"', cb);
 });
 
 gulp.task('publish:git', function(cb) {
-  runCommand("git push --tags", cb);
+  runCommand('git push --tags', cb);
 });
 
 var runCommand = function(command, callback) {

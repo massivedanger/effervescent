@@ -1,11 +1,11 @@
-var _ = require("lodash");
-var p2 = require("p2");
-var server = typeof window === "undefined";
-var Class = require('jsclass/src/core').Class;
+var _ = require('lodash');
+var p2 = require('p2');
+var server = typeof window === 'undefined';
+var Base = require('./base');
 var Camera = require('./display/camera');
 
-var Game = new Class({
-  initialize: function(options) {
+var Game = Base.extend({
+  constructor: function(options) {
     if (options == null) {
       options = {};
     }
@@ -85,7 +85,7 @@ var Game = new Class({
   setupGraphics: function(options) {
     var el;
 
-    this.container = jQuery((el = options.container) != null ? el : "body");
+    this.container = jQuery((el = options.container) != null ? el : 'body');
     this.stage = this.createStage();
     this.objectContainer = this.createObjectContainer();
     this.renderer = this.createRenderer();

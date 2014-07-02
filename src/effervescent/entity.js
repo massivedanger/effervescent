@@ -1,9 +1,9 @@
-var _ = require("lodash");
-var Class = require("jsclass/src/core").Class;
-var postal = require("postal");
+var _ = require('lodash');
+var postal = require('postal');
+var Base = require('./base');
 
-var Entity = new Class({
-  initialize: function() {
+var Entity = Base.extend({
+  constructor: function() {
     this.components = {};
     this.state = null;
   },
@@ -13,15 +13,15 @@ var Entity = new Class({
   },
 
   getComponent: function(componentName) {
-    return this.components["$" + componentName];
+    return this.components['$' + componentName];
   },
 
   addComponent: function(component) {
-    this.components["$" + component.name] = component;
+    this.components['$' + component.name] = component;
 
     postal.publish({
-      channel: "entities",
-      topic: "component.add",
+      channel: 'entities',
+      topic: 'component.add',
       data: {
         entity: this,
         componentName: component.name
@@ -36,11 +36,11 @@ var Entity = new Class({
   },
 
   removeComponent: function(componentName) {
-    this.components["$" + componentName] = void 0;
+    this.components['$' + componentName] = void 0;
 
     postal.publish({
-      channel: "entities",
-      topic: "component.remove",
+      channel: 'entities',
+      topic: 'component.remove',
       data: {
         entity: this,
         componentName: componentName
