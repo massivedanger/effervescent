@@ -157,9 +157,9 @@ var Vector2 = Base.extend({
 
     return this;
   }
+}, {
+  radiansToDegrees: 57.2957795
 });
-
-Vector2.radiansToDegrees = 57.2957795;
 
 var hypot = function(a, b) {
   if (a === 0) {

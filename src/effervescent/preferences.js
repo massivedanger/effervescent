@@ -33,16 +33,16 @@ var Preferences = Base.extend({
   remove: function(name) {
     this.data.remove({ name: name });
   }
+}, {
+  createFromTemplate: function(file, name, callback) {
+    var destination = Player.getFilePath(name + '.db');
+
+    fse.copy(file, destination, function(err) {
+      if (callback) {
+        return callback(err, new Preferences(name));
+      }
+    });
+  }
 });
-
-Preferences.createFromTemplate = function(file, name, callback) {
-  var destination = Player.getFilePath(name + '.db');
-
-  fse.copy(file, destination, function(err) {
-    if (callback) {
-      return callback(err, new Preferences(name));
-    }
-  });
-}
 
 module.exports = Preferences;
