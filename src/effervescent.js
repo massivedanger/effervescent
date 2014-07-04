@@ -1,5 +1,10 @@
+var pkg = require('../package.json');
+
 var Effervescent = {
-  Base: require('./effervescent/base');
+  version: pkg.version,
+  logger: require('./effervescent/logger'),
+
+  Base: require('./effervescent/base'),
   Game: require('./effervescent/game'),
   Entity: require('./effervescent/entity'),
   System: require('./effervescent/system'),
@@ -10,10 +15,6 @@ var Effervescent = {
   Player: require('./effervescent/player'),
   Preferences: require('./effervescent/preferences'),
   Save: require('./effervescent/save'),
-
-  logger: require('./effervescent/logger'),
-
-  Datastore: require('nedb'),
 };
 
 if (typeof window !== 'undefined') {

@@ -2,7 +2,7 @@
   "name": "effervescent",
   "version": "1.0.0-alpha.5",
   "description": "A game engine",
-  "main": "src/effervescent.js",
+  "main": "index.js",
   "scripts": {
     "test": "./node_modules/.bin/gulp test"
   },
@@ -31,7 +31,9 @@
     "yargs": "^1.2.2"
   },
   "dependencies": {
+    "chalk": "^0.4.0",
     "class-extend": "^0.1.1",
+    "commander": "^2.2.0",
     "fs-extra": "^0.9.1",
     "jquery": "^2.1.1",
     "lodash": "^2.4.1",
