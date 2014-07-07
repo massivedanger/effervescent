@@ -15,6 +15,7 @@ var Effervescent = {
   Player: require('./effervescent/player'),
   Preferences: require('./effervescent/preferences'),
   Save: require('./effervescent/save'),
+  State: require('./effervescent/state')
 };
 
 if (typeof window !== 'undefined') {
