@@ -9,6 +9,9 @@ var State = Base.extend({
     this.families = {};
     this.systems = [];
     this.entities = [];
+    this.running = true;
+
+    this.created();
   },
 
   addEntity: function(entity) {
@@ -67,23 +70,47 @@ var State = Base.extend({
   reset: function() {
     this.entities = [];
     this.systems = [];
-    return this.families = {};
+    this.families = {};
   },
 
-  enter: function() {},
-  exit: function() {},
-  pause: function() {},
-  resume: function() {},
+  created: function() {},
+  entered: function() {},
+  exited: function() {},
+  paused: function() {},
+  resumed: function() {},
 
   update: function(delta) {
-    var system, _i, _len, _ref, _results;
-    _ref = this.systems;
-    _results = [];
-    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-      system = _ref[_i];
-      _results.push(system.update(delta));
+    if (this.running) {
+      this.systems.forEach(function(system) {
+        system.update(delta);
+      });
     }
-    return _results;
+  },
+
+  pause: function() {
+    this.running = false;
+    postal.publish({
+      channel: 'states',
+      topic: 'pause',
+      data: {
+        state: this
+      }
+    });
+
+    this.paused();
+  },
+
+  resume: function() {
+    this.running = true;
+    postal.publish({
+      channel: 'states',
+      topic: 'resume',
+      data: {
+        state: this
+      }
+    });
+
+    this.resumed();
   }
 });
 

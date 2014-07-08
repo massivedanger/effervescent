@@ -18,6 +18,18 @@ describe('State', function() {
     component.name = 'test';
   });
 
+  it('calls created when constructed', function() {
+    CallbackState = State.extend({
+      created: function() {
+        this.createdCalled = true;
+      }
+    });
+
+    newState = new CallbackState();
+
+    expect(newState.createdCalled).to.be.true;
+  });
+
   it('can add an entity', function() {
     entity.addedToState = sinon.spy();
     entity.addComponent(component);
@@ -92,5 +104,26 @@ describe('State', function() {
     state.update(1.0);
 
     expect(system.update).to.have.callCount(1);
+  });
+
+  it('can pause', function() {
+    state.paused = function() {
+      this.pausedCalled = true;
+    };
+    state.pause();
+
+    expect(state.running).to.be.false;
+    expect(state.pausedCalled).to.be.true;
+  });
+
+  it('can resume', function() {
+    state.running = false;
+    state.resumed = function() {
+      this.resumedCalled = true;
+    };
+    state.resume();
+
+    expect(state.running).to.be.true;
+    expect(state.resumedCalled).to.be.true;
   });
 });

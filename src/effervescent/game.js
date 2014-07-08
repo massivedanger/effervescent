@@ -63,12 +63,14 @@ var Game = Base.extend({
 
   pushState: function(state) {
     state.game = this;
-    return this.states.push(state);
+    this.states.push(state);
+    state.entered();
   },
 
   popState: function() {
     var state = this.states.pop();
     state.game = null;
+    state.exited();
 
     return state;
   },
@@ -76,6 +78,7 @@ var Game = Base.extend({
   changeState: function(state) {
     state.game = this;
     this.states = [state];
+    state.entered();
   },
 
   getCurrentState: function() {
