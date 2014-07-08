@@ -1,6 +1,6 @@
 {
   "name": "effervescent",
-  "version": "1.0.0-alpha.6",
+  "version": "1.0.0-alpha.7",
   "description": "A game engine",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,7 @@
     "engine",
     "html5"
   ],
-  "author": "Evan Walsh",
+  "author": "Massive Danger <support@massivedanger.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
