@@ -8,6 +8,7 @@ global.getFixturePath = function(file) {
   if (!file) {
     file = "";
   }
+
   return path.join(__dirname, "fixtures", file);
 }
 

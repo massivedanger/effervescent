@@ -10,7 +10,7 @@ describe('Entity', function() {
   beforeEach(function() {
     entity = new Entity();
     component = new Component();
-    return component.name = 'testing';
+    component.name = 'testing';
   });
 
   it('can add components', function() {
