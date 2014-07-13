@@ -8,14 +8,15 @@ var Factory = {
 
   class: Entity,
 
-  run: function() {
+  process: function(object) {},
+  reset: function(object) {},
+
+  get object () {
     var object = new this.class();
     this.process(object);
 
     return object;
-  },
-
-  process: function(object) {}
-}
+  }
+};
 
 module.exports = Factory;

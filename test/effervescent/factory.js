@@ -6,7 +6,7 @@ describe('Factory', function() {
   var result = null;
 
   it('generates an Entity by default', function() {
-    result = Factory.run();
+    result = Factory.object;
 
     expect(result).to.be.an.instanceOf(Entity);
   });
@@ -16,7 +16,7 @@ describe('Factory', function() {
       class: Component
     });
 
-    result = ComponentFactory.run();
+    result = ComponentFactory.object;
 
     expect(result).to.be.an.instanceOf(Component);
   });
@@ -29,7 +29,7 @@ describe('Factory', function() {
       }
     });
 
-    var result = ProcessFactory.run();
+    var result = ProcessFactory.object;
 
     expect(result.processed).to.be.true;
     expect(result.processedAt).to.be.an.instanceOf(Date);

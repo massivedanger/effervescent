@@ -6,6 +6,7 @@ var Entity = Base.extend({
   constructor: function() {
     this.components = {};
     this.state = null;
+    this.alive = true;
   },
 
   hasComponent: function(componentName) {
@@ -60,6 +61,14 @@ var Entity = Base.extend({
     _.forEach(this.components, function(component) {
       component.removedFromState(state);
     });
+  },
+
+  kill: function() {
+    this.alive = false;
+  },
+
+  revive: function() {
+    this.alive = true;
   }
 });
 
