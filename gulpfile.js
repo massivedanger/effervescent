@@ -34,7 +34,7 @@ gulp.task('docs', function() {
 
 gulp.task('repl', function(done) {
   var replServer = repl.start({
-    prompt: '> ',
+    prompt: '★ ',
   });
 
   var context = {
