@@ -1,38 +1,71 @@
-# Tutorial
+% Effervescent: Tutorial
+% Massive Danger
 
-## Introduction
+# Introduction
 
 Effervescent is a JavaScript game engine that
 
-## Getting Started
-### Installation
-### Creating your first game
-### Running your first game
-### The game object
+# Getting Started
 
-## Entities, Components, and Systems
-### Entities
-### Components
-### Systems
-### Bringing it all together
 
-## Display
-### Sprites
-### States
 
-## Input
-### Keyboard
-### Mouse
+## Installation
 
-##Physics
 
-## Player Data
-### Files
-### Preferences
-### Saves
 
-## Debugging
-### Logging
+## Creating your first game
 
-## Distribution
-## Conclusion
+
+
+## Running your first game
+
+
+
+## The game object
+
+
+
+---
+
+# Entities, Components, and Systems
+
+## Entities
+## Components
+## Systems
+## Bringing it all together
+
+---
+
+# Display
+## Sprites
+## States
+
+---
+
+# Input
+## Keyboard
+## Mouse
+
+---
+
+# Physics
+
+---
+
+# Player Data
+## Files
+## Preferences
+## Saves
+
+---
+
+# Debugging
+## Logging
+
+---
+
+# Distribution
+
+---
+
+# Conclusion
