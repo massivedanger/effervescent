@@ -25,9 +25,10 @@ var Game = Base.extend({
     this.scheduleNext(this.tick.bind(this));
   },
 
-  tick: function(time) {
+  tick: function() {
     if (this.running) {
-      this.deltaTime = time - (this.lastUpdateTime || time);
+      var time = Date.now();
+      this.deltaTime = (time - (this.lastUpdateTime || time)) / 1000;
       this.lastUpdateTime = time;
       this.update();
 
@@ -128,7 +129,7 @@ var Game = Base.extend({
 
   scheduleNext: function(callback) {
     if (server) {
-      return process.nextTick(callback);
+      return setImmediate(callback);
     } else {
       return requestAnimationFrame(callback);
     }

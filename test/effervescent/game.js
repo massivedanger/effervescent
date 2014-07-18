@@ -12,6 +12,7 @@ describe('Game', function() {
       game.states.forEach(function(state) {
         state.update(game.deltaTime);
       });
+
       game.running = false;
     };
   });
